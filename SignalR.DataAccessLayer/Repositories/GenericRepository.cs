@@ -11,33 +11,26 @@ namespace SignalR.DataAccessLayer.Repositories
         {
             _context = context;
         }
-
-        public void Add(T entity)
+        public virtual List<T> GetListAll() => _context.Set<T>().ToList();
+        public virtual T GetByID(int id) => _context.Set<T>().Find(id);
+        public virtual T Add(T entity)
         {
             _context.Add(entity);
             _context.SaveChanges();
+            return entity;
         }
-
-        public void Delete(T entity)
-        {
-            _context.Remove(entity);
-            _context.SaveChanges();
-        }
-
-        public T GetByID(int id)
-        {
-            return _context.Set<T>().Find(id);
-        }
-
-        public List<T> GetListAll()
-        {
-            return _context.Set<T>().ToList();
-        }
-
-        public void Update(T entity)
+        public virtual T Update(T entity)
         {
             _context.Update(entity);
             _context.SaveChanges();
+            return entity;
+        }
+
+        public virtual T Delete(T entity)
+        {
+            _context.Remove(entity);
+            _context.SaveChanges();
+            return entity;
         }
     }
 }

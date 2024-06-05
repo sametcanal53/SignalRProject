@@ -2,9 +2,9 @@
 {
     public interface IGenericDal<T> where T : class
     {
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        T Add(T entity);
+        T Update(T entity);
+        T Delete(T entity);
         T GetByID(int id);
         List<T> GetListAll();
     }

@@ -14,8 +14,8 @@ namespace SignalR.BusinessLayer.Concretes
 
         public virtual List<T> GetListAll() => _dal.GetListAll();
         public virtual T GetByID(int id) => _dal.GetByID(id);
-        public virtual void Add(T entity) => _dal.Add(entity);
-        public virtual void Update(T entity) => _dal.Update(entity);
-        public virtual void Delete(T entity) => _dal.Delete(entity);
+        public virtual T Add(T entity) => _dal.Add(entity);
+        public virtual T Update(T entity) => _dal.Update(entity);
+        public virtual T Delete(T entity) => _dal.Delete(entity);
     }
 }
