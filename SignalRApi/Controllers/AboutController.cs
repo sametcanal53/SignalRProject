@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SignalR.BusinessLayer.Abstracts;
-using SignalR.DtoLayer.AboutDto;
+using SignalR.DtoLayer.Concretes.Dtos.AboutDto;
 using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstracts;
-using SignalR.DtoLayer.FeatureDto;
+using SignalR.DtoLayer.Concretes.Dtos.FeatureDto;
 using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers

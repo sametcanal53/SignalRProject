@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SignalR.DtoLayer.FeatureDto;
+using SignalR.DtoLayer.Concretes.Dtos.FeatureDto;
 using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Mapping

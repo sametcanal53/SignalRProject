@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstracts;
-using SignalR.DtoLayer.ProductDto;
+using SignalR.DtoLayer.Concretes.Dtos.ProductDto;
 using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
