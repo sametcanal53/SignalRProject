@@ -8,10 +8,22 @@ namespace SignalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : GenericController<Product, ResultProductDto, GetProductDto, CreateProductDto, UpdateProductDto>
+    public class ProductController : GenericController<Product, IProductService, ResultProductDto, GetProductDto, CreateProductDto, UpdateProductDto>
     {
-        public ProductController(IGenericService<Product> service, IMapper mapper) : base(service, mapper)
+        private readonly IProductService _productService;
+        private readonly IMapper _mapper;
+
+        public ProductController(IProductService service, IMapper mapper) : base(service, mapper)
         {
+            _productService = service;
+            _mapper = mapper;
+        }
+
+        [HttpGet("GetProductListWithCategory")]
+        public IActionResult GetProductListWithCategory()
+        {
+            var result = _mapper.Map<List<ResultProductWithCategory>>(_productService.GetProductsWithCategories());
+            return Ok(result);
         }
     }
 }

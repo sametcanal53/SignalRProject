@@ -6,12 +6,12 @@ namespace SignalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GenericController<T, TGetAllModel, TGetModel, TCreateDto, TUpdateDto> : ControllerBase where T : class where TCreateDto : class where TUpdateDto : class
+    public class GenericController<T, TService, TGetAllModel, TGetModel, TCreateDto, TUpdateDto> : ControllerBase where T : class where TCreateDto : class where TUpdateDto : class where TService : IGenericService<T>
     {
-        private readonly IGenericService<T> _service;
+        private readonly TService _service;
         private readonly IMapper _mapper;
 
-        public GenericController(IGenericService<T> service, IMapper mapper)
+        public GenericController(TService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;

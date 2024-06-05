@@ -5,9 +5,9 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class AboutController : GenericController<About, ResultAboutDto, GetAboutDto, CreateAboutDto, UpdateAboutDto>
+    public class AboutController : GenericController<About, IAboutService, ResultAboutDto, GetAboutDto, CreateAboutDto, UpdateAboutDto>
     {
-        public AboutController(IGenericService<About> service, IMapper mapper) : base(service, mapper)
+        public AboutController(IAboutService service, IMapper mapper) : base(service, mapper)
         {
         }
     }

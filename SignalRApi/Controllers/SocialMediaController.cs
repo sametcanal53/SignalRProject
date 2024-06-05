@@ -8,9 +8,9 @@ namespace SignalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SocialMediaController : GenericController<SocialMedia, ResultSocialMediaDto, GetSocialMediaDto, CreateSocialMediaDto, UpdateSocialMediaDto>
+    public class SocialMediaController : GenericController<SocialMedia, ISocialMediaService, ResultSocialMediaDto, GetSocialMediaDto, CreateSocialMediaDto, UpdateSocialMediaDto>
     {
-        public SocialMediaController(IGenericService<SocialMedia> service, IMapper mapper) : base(service, mapper)
+        public SocialMediaController(ISocialMediaService service, IMapper mapper) : base(service, mapper)
         {
         }
     }

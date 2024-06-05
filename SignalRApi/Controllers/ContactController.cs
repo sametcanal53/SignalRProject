@@ -8,9 +8,9 @@ namespace SignalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContactController : GenericController<Contact, ResultContactDto, GetContactDto, CreateContactDto, UpdateContactDto>
+    public class ContactController : GenericController<Contact, IContactService, ResultContactDto, GetContactDto, CreateContactDto, UpdateContactDto>
     {
-        public ContactController(IGenericService<Contact> service, IMapper mapper) : base(service, mapper)
+        public ContactController(IContactService service, IMapper mapper) : base(service, mapper)
         {
         }
     }

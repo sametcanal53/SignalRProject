@@ -8,9 +8,9 @@ namespace SignalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : GenericController<Category, ResultCategoryDto, GetCategoryDto, CreateCategoryDto, UpdateCategoryDto>
+    public class CategoryController : GenericController<Category, ICategoryService, ResultCategoryDto, GetCategoryDto, CreateCategoryDto, UpdateCategoryDto>
     {
-        public CategoryController(IGenericService<Category> service, IMapper mapper) : base(service, mapper)
+        public CategoryController(ICategoryService service, IMapper mapper) : base(service, mapper)
         {
         }
     }

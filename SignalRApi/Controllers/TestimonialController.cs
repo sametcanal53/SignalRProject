@@ -8,9 +8,9 @@ namespace SignalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TestimonialController : GenericController<Testimonial, ResultTestimonialDto, GetTestimonialDto, CreateTestimonialDto, UpdateTestimonialDto>
+    public class TestimonialController : GenericController<Testimonial, ITestimonialService, ResultTestimonialDto, GetTestimonialDto, CreateTestimonialDto, UpdateTestimonialDto>
     {
-        public TestimonialController(IGenericService<Testimonial> service, IMapper mapper) : base(service, mapper)
+        public TestimonialController(ITestimonialService service, IMapper mapper) : base(service, mapper)
         {
         }
     }

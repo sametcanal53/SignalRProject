@@ -9,9 +9,9 @@ namespace SignalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DiscountController : GenericController<Discount, ResultDiscountDto, GetDiscountDto, CreateDiscountDto, UpdateDiscountDto>
+    public class DiscountController : GenericController<Discount, IDiscountService, ResultDiscountDto, GetDiscountDto, CreateDiscountDto, UpdateDiscountDto>
     {
-        public DiscountController(IGenericService<Discount> service, IMapper mapper) : base(service, mapper)
+        public DiscountController(IDiscountService service, IMapper mapper) : base(service, mapper)
         {
         }
     }

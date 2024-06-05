@@ -9,9 +9,9 @@ namespace SignalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FeatureController : GenericController<Feature, ResultFeatureDto, GetFeatureDto, CreateFeatureDto, UpdateFeatureDto>
+    public class FeatureController : GenericController<Feature, IFeatureService, ResultFeatureDto, GetFeatureDto, CreateFeatureDto, UpdateFeatureDto>
     {
-        public FeatureController(IGenericService<Feature> service, IMapper mapper) : base(service, mapper)
+        public FeatureController(IFeatureService service, IMapper mapper) : base(service, mapper)
         {
         }
     }
