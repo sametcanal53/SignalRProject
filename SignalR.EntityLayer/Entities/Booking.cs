@@ -1,8 +1,9 @@
-﻿namespace SignalR.EntityLayer.Entities
+﻿using SignalR.EntityLayer.Concretes;
+
+namespace SignalR.EntityLayer.Entities
 {
-    public class Booking
+    public class Booking : Entity<int>
     {
-        public int BookingID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }

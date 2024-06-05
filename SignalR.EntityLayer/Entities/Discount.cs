@@ -1,8 +1,9 @@
-﻿namespace SignalR.EntityLayer.Entities
+﻿using SignalR.EntityLayer.Concretes;
+
+namespace SignalR.EntityLayer.Entities
 {
-    public class Discount
+    public class Discount : Entity<int>
     {
-        public int DiscountID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public int Amount { get; set; }
