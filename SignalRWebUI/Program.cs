@@ -1,6 +1,18 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient("client", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:5353/");
+})
+.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+{
+    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) =>
+    {
+        return policyErrors == System.Net.Security.SslPolicyErrors.None;
+    }
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using SignalRWebUI.Dtos.Concretes.Category;
 
 namespace SignalRWebUI.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : BaseController<ResultCategoryDto, CreateCategoryDto, UpdateCategoryDto>
     {
-        public IActionResult Index()
+        public CategoryController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {
-            return View();
         }
     }
 }
