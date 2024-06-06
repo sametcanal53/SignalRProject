@@ -2,7 +2,7 @@
 
 namespace SignalRWebUI.ViewComponents.LayoutComponents
 {
-    public class _LayoutHeaderPartialComponent : ViewComponent
+    public class _LayoutScriptComponentPartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
