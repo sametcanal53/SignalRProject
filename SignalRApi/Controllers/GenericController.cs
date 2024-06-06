@@ -6,7 +6,7 @@ namespace SignalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GenericController<T, TService, TGetAllModel, TGetModel, TCreateDto, TUpdateDto> : ControllerBase where T : class where TCreateDto : class where TUpdateDto : class where TService : IGenericService<T>
+    public class GenericController<T, TService, TGetListModel, TGetModel, TCreateDto, TUpdateDto> : ControllerBase where T : class where TCreateDto : class where TUpdateDto : class where TService : IGenericService<T>
     {
         private readonly TService _service;
         private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ namespace SignalRApi.Controllers
         [HttpGet]
         public virtual IActionResult GetAll()
         {
-            var result = _mapper.Map<List<TGetAllModel>>(_service.GetListAll());
+            var result = _mapper.Map<List<TGetListModel>>(_service.GetListAll());
             return Ok(result);
         }
 
@@ -38,14 +38,14 @@ namespace SignalRApi.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPatch]
         public virtual IActionResult Update(TUpdateDto dto)
         {
             var result = _service.Update(_mapper.Map<T>(dto));
             return Ok(result);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public virtual IActionResult Delete(int id)
         {
             var entity = _service.GetByID(id);
