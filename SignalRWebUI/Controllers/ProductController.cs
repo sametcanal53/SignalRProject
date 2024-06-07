@@ -31,14 +31,14 @@ namespace SignalRWebUI.Controllers
         [HttpGet]
         public override async Task<IActionResult> Create()
         {
-            GetSelecListItems();
+            await GetSelecListItems();
             return View();
         }
 
         [HttpGet]
         public override async Task<IActionResult> Update(int id)
         {
-            GetSelecListItems();
+            await GetSelecListItems();
             var client = _httpClientFactory.CreateClient();
             var response = await client.GetAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/{id}");
             if (response.IsSuccessStatusCode)
@@ -50,7 +50,7 @@ namespace SignalRWebUI.Controllers
             return View();
         }
 
-        private async void GetSelecListItems()
+        private async Task GetSelecListItems()
         {
             var client = _httpClientFactory.CreateClient();
             var response = await client.GetAsync($"https://localhost:5353/api/Category");
