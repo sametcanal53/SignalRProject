@@ -6,14 +6,14 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class ProductController : GenericController<Product, ResultProductDto, GetProductDto, CreateProductDto, UpdateProductDto>
+    public class ProductsController : GenericController<Product, ResultProductDto, GetProductDto, CreateProductDto, UpdateProductDto>
     {
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public ProductController(IProductService service, IMapper mapper) : base(service, mapper)
+        public ProductsController(IProductService productService, IMapper mapper) : base(productService, mapper)
         {
-            _productService = service;
+            _productService = productService;
             _mapper = mapper;
         }
 
