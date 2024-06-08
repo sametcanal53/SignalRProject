@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using SignalRWebUI.Dtos.Concretes.Category;
-using SignalRWebUI.Dtos.Concretes.Products;
+using SignalRWebUI.Dtos.Concretes.Features;
 
 namespace SignalRWebUI.Controllers
 {
-    public class ProductController : GenericController<ResultProductDto, CreateProductDto, UpdateProductDto>
+    public class FeaturesController : GenericController<ResultFeatureDto, CreateFeatureDto, UpdateFeatureDto>
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public ProductController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
+        public FeaturesController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -17,12 +16,12 @@ namespace SignalRWebUI.Controllers
         public override async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/GetProductListWithCategory");
+            var response = await client.GetAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/GetFeaturesWithFeatureDetails");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                var categories = JsonConvert.DeserializeObject<List<ResultProductDto>>(content);
-                return View(categories);
+                var features = JsonConvert.DeserializeObject<List<ResultFeatureWithFeatureDetailDto>>(content);
+                return View(features);
             }
             return View();
         }
@@ -39,12 +38,12 @@ namespace SignalRWebUI.Controllers
         {
             await GetSelecListItems();
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/{id}");
+            var response = await client.GetAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/GetFeaturesWithFeatureDetails");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                var category = JsonConvert.DeserializeObject<UpdateProductDto>(content);
-                return View(category);
+                var feature = JsonConvert.DeserializeObject<UpdateFeatureDto>(content);
+                return View(feature);
             }
             return View();
         }
@@ -53,16 +52,16 @@ namespace SignalRWebUI.Controllers
         private async Task GetSelecListItems()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:5353/api/Categories");
+            var response = await client.GetAsync($"https://localhost:5353/api/Features");
             var content = await response.Content.ReadAsStringAsync();
-            var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(content);
-            List<SelectListItem> selectListItems = (from category in categories
+            var features = JsonConvert.DeserializeObject<List<ResultFeatureDto>>(content);
+            List<SelectListItem> selectListItems = (from feature in features
                                                     select new SelectListItem
                                                     {
-                                                        Text = category.Name,
-                                                        Value = category.Id.ToString()
+                                                        Text = feature.Name,
+                                                        Value = feature.Id.ToString()
                                                     }).ToList();
-            ViewBag.Categories = selectListItems;
+            ViewBag.Features = selectListItems;
         }
     }
 }

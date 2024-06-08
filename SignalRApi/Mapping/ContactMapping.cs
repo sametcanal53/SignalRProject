@@ -12,6 +12,7 @@ namespace SignalRApi.Mapping
             CreateMap<Contact, GetContactDto>().ReverseMap();
             CreateMap<Contact, CreateContactDto>().ReverseMap();
             CreateMap<Contact, UpdateContactDto>().ReverseMap();
+            CreateMap<Contact, ResultContactWithSocialMediaDto>().ReverseMap();
         }
     }
 }

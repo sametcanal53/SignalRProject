@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SignalR.DataAccessLayer.Concretes;
 
@@ -11,9 +12,11 @@ using SignalR.DataAccessLayer.Concretes;
 namespace SignalR.DataAccessLayer.Migrations
 {
     [DbContext(typeof(SignalRContext))]
-    partial class SignalRContextModelSnapshot : ModelSnapshot
+    [Migration("20240608212437_mig_add_contact_new_columns")]
+    partial class mig_add_contact_new_columns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -389,9 +392,6 @@ namespace SignalR.DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ContactId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -408,8 +408,6 @@ namespace SignalR.DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ContactId");
 
                     b.ToTable("SocialMedias");
                 });
@@ -487,25 +485,9 @@ namespace SignalR.DataAccessLayer.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("SignalR.EntityLayer.Entities.SocialMedia", b =>
-                {
-                    b.HasOne("SignalR.EntityLayer.Entities.Contact", "Contact")
-                        .WithMany("SocialMedias")
-                        .HasForeignKey("ContactId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Contact");
-                });
-
             modelBuilder.Entity("SignalR.EntityLayer.Entities.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("SignalR.EntityLayer.Entities.Contact", b =>
-                {
-                    b.Navigation("SocialMedias");
                 });
 
             modelBuilder.Entity("SignalR.EntityLayer.Entities.Feature", b =>
