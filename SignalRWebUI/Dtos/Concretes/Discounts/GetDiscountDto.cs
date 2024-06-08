@@ -2,7 +2,7 @@
 
 namespace SignalRWebUI.Dtos.Concretes.Discounts
 {
-    public class GetDiscountDto : BaseDiscountDto, IDto<int>
+    public class GetDiscountDto : DiscountDto, IDto<int>
     {
         public int Id { get; set; }
     }

@@ -2,7 +2,7 @@
 
 namespace SignalRWebUI.Dtos.Concretes.Bookings
 {
-    public class GetBookingDto : BaseBookingDto, IDto<int>
+    public class GetBookingDto : BookingDto, IDto<int>
     {
         public int Id { get; set; }
     }

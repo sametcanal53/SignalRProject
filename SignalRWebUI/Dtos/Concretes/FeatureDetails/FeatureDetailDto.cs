@@ -1,11 +1,11 @@
 ﻿using SignalRWebUI.Dtos.Concretes.Base;
 
-namespace SignalRWebUI.Dtos.Concretes.Abouts
+namespace SignalRWebUI.Dtos.Concretes.FeatureDetails
 {
-    public class AboutDto : Dto
+    public class FeatureDetailDto : Dto
     {
-        public string ImageUrl { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public int FeatureId { get; set; }
     }
 }

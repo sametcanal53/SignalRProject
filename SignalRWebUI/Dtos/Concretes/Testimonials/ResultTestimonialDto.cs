@@ -2,7 +2,7 @@
 
 namespace SignalRWebUI.Dtos.Concretes.Testimonials
 {
-    public class ResultTestimonialDto : BaseTestimonialDto, IDto<int>
+    public class ResultTestimonialDto : TestimonialDto, IDto<int>
     {
         public int Id { get; set; }
     }

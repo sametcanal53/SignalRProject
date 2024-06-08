@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.Concretes.Discounts
+﻿using SignalRWebUI.Dtos.Concretes.Base;
+
+namespace SignalRWebUI.Dtos.Concretes.Discounts
 {
-    public class BaseDiscountDto
+    public class DiscountDto : Dto
     {
         public string Title { get; set; }
         public string Description { get; set; }

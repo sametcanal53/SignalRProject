@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.Concretes.Products
+﻿using SignalRWebUI.Dtos.Concretes.Base;
+
+namespace SignalRWebUI.Dtos.Concretes.Products
 {
-    public class ProductDto
+    public class ProductDto : Dto
     {
         public string Name { get; set; }
         public string Description { get; set; }

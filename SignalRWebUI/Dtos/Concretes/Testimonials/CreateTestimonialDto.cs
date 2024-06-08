@@ -1,6 +1,6 @@
 ﻿namespace SignalRWebUI.Dtos.Concretes.Testimonials
 {
-    public class CreateTestimonialDto : BaseTestimonialDto
+    public class CreateTestimonialDto : TestimonialDto
     {
     }
 }

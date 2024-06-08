@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.Concretes.SocialMedias
+﻿using SignalRWebUI.Dtos.Concretes.Base;
+
+namespace SignalRWebUI.Dtos.Concretes.SocialMedias
 {
-    public class BaseSocialMediaDto
+    public class SocialMediaDto : Dto
     {
         public string Title { get; set; }
         public string Url { get; set; }

@@ -1,37 +1,35 @@
-﻿@model UpdateAboutDto
+﻿@model CreateFeatureDetailDto
 @{
-    ViewData["Title"] = "Update";
+    ViewData["Title"] = "Create";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Hakkımızda İşlemleri</h4>
+        <h4 class="page-title">Öne Çıkan Alan Detay İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
                 <form method="post">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Hakkımızda Güncelle</div>
+                            <div class="card-title">Yeni Öne Çıkan Alan Detayı</div>
                         </div>
                         <div class="card-body">
-                            <input type="hidden" asp-for="Id" />
-                            <input type="hidden" asp-for="State" />
                             <div class="form-group">
                                 <label for="title">Başlık</label>
                                 <input type="text" class="form-control" asp-for="Title" id="title" placeholder="Başlık Giriniz">
                             </div>
                             <div class="form-group">
-                                <label for="imageUrl">Görsel</label>
-                                <input type="text" class="form-control" asp-for="ImageUrl" id="imageUrl" placeholder="Görsel Giriniz">
-                            </div>
-                            <div class="form-group">
                                 <label for="description">Açıklama</label>
                                 <textarea rows="5" type="text" class="form-control" asp-for="Description" id="description" placeholder="Açıklama Giriniz"></textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="maintitle">Üst Başlık</label>
+                                @Html.DropDownListFor(x => x.FeatureId, ViewBag.Features as List<SelectListItem>, new { @class = "form-control" })
+                            </div>
                         </div>
                         <div class="card-action">
-                            <button class="btn btn-primary">Güncelle</button>
+                            <button class="btn btn-primary">Ekle</button>
                         </div>
                     </div>
                 </form>

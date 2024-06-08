@@ -1,6 +1,6 @@
 ﻿namespace SignalRWebUI.Dtos.Concretes.Features
 {
-    public class CreateFeatureDto : BaseFeatureDto
+    public class CreateFeatureDto : FeatureDto
     {
     }
 }

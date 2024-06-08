@@ -1,6 +1,6 @@
 ﻿namespace SignalRWebUI.Dtos.Concretes.Contacts
 {
-    public class CreateContactDto : BaseContactDto
+    public class CreateContactDto : ContactDto
     {
 
     }

@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.Concretes.Testimonials
+﻿using SignalRWebUI.Dtos.Concretes.Base;
+
+namespace SignalRWebUI.Dtos.Concretes.Testimonials
 {
-    public class BaseTestimonialDto
+    public class TestimonialDto : Dto
     {
         public string Name { get; set; }
         public string Title { get; set; }
