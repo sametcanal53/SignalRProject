@@ -4,12 +4,7 @@ namespace SignalR.EntityLayer.Entities
 {
     public class Feature : Entity<int>
     {
-        public string Title1 { get; set; }
-        public string Description1 { get; set; }
-        public string Title2 { get; set; }
-        public string Description2 { get; set; }
-        public string Title3 { get; set; }
-        public string Description3 { get; set; }
-
+        public string Name { get; set; }
+        public List<FeatureDetail> FeatureDetails { get; set; }
     }
 }

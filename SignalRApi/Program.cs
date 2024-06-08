@@ -5,6 +5,7 @@ using SignalR.DataAccessLayer.Concretes;
 using SignalR.DataAccessLayer.EntityFramework;
 using SignalR.DataAccessLayer.Repositories;
 using SignalRApi.Hubs;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,13 @@ builder.Services.AddCors(opt =>
         policy.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(host => true).AllowCredentials();
     });
 });
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.WriteIndented = true;
+    });
+
 builder.Services.AddSignalR();
 
 builder.Services.AddAutoMapper(typeof(Program));

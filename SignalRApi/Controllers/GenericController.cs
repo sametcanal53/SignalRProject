@@ -11,12 +11,7 @@ namespace SignalRApi.Controllers
 
     }
 
-    public class GenericController<T, TGetListModel, TGetModel, TCreateDto, TUpdateDto> : GenericController
-        where T : class
-        where TGetListModel : class
-        where TGetModel : class
-        where TCreateDto : class
-        where TUpdateDto : class
+    public class GenericController<T, TGetListModel, TGetModel> : GenericController where T : class
     {
         private readonly IGenericService<T> _service;
         private readonly IMapper _mapper;
@@ -39,6 +34,23 @@ namespace SignalRApi.Controllers
         {
             var result = _mapper.Map<TGetModel>(_service.GetByID(id));
             return Ok(result);
+        }
+    }
+
+    public class GenericController<T, TGetListModel, TGetModel, TCreateDto, TUpdateDto> : GenericController<T, TGetListModel, TGetModel>
+        where T : class
+        where TGetListModel : class
+        where TGetModel : class
+        where TCreateDto : class
+        where TUpdateDto : class
+    {
+        private readonly IGenericService<T> _service;
+        private readonly IMapper _mapper;
+
+        public GenericController(IGenericService<T> service, IMapper mapper) : base(service, mapper)
+        {
+            _service = service;
+            _mapper = mapper;
         }
 
         [HttpPost]
