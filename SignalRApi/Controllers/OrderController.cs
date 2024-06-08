@@ -17,5 +17,7 @@ namespace SignalRApi.Controllers
         [HttpGet("OrderCount")]
         public IActionResult OrderCount(bool? isActive) => Ok(_service.OrderCount(isActive));
 
+        [HttpGet("LastOrderPrice")]
+        public IActionResult LastOrderPrice(bool? isActive) => Ok(_service.LastOrderPrice(isActive));
     }
 }

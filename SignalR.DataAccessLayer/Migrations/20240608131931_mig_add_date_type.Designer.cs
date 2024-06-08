@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SignalR.DataAccessLayer.Concretes;
 
@@ -11,9 +12,11 @@ using SignalR.DataAccessLayer.Concretes;
 namespace SignalR.DataAccessLayer.Migrations
 {
     [DbContext(typeof(SignalRContext))]
-    partial class SignalRContextModelSnapshot : ModelSnapshot
+    [Migration("20240608131931_mig_add_date_type")]
+    partial class mig_add_date_type
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
