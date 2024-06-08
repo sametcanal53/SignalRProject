@@ -6,8 +6,8 @@ namespace SignalR.BusinessLayer.Abstracts
     {
         List<Product> GetProductsWithCategories();
         int ProductCountByCategoryName(string categoryName);
-        decimal ProductPriceAvg(int? categoryId);
-        string ProductNameByMaxPrice(int? categoryId);
-        string ProductNameByMinPrice(int? categoryId);
+        decimal ProductPriceAvg(int? categoryId = default);
+        string ProductNameByMaxPrice(int? categoryId = default);
+        string ProductNameByMinPrice(int? categoryId = default);
     }
 }

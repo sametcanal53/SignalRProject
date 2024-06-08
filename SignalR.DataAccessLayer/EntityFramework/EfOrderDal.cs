@@ -13,7 +13,6 @@ namespace SignalR.DataAccessLayer.EntityFramework
             _context = context;
         }
 
-        public int OrderCount(bool? isActive) => IsActiveConditions(_context.Orders, isActive).Count();
         public decimal LastOrderPrice(bool? isActive) => IsActiveConditions(_context.Orders, isActive).OrderByDescending(o => o.Id).Select(o => o.TotalPrice).FirstOrDefault();
     }
 }

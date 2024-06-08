@@ -4,7 +4,6 @@ namespace SignalR.BusinessLayer.Abstracts
 {
     public interface IOrderService : IGenericService<Order>
     {
-        int OrderCount(bool? isActive);
-        decimal LastOrderPrice(bool? isActive);
+        decimal LastOrderPrice(bool? isActive = default);
     }
 }

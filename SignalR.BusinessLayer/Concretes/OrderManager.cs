@@ -11,8 +11,6 @@ namespace SignalR.BusinessLayer.Concretes
         {
             _dal = dal;
         }
-
-        public int OrderCount(bool? isActive) => _dal.OrderCount(isActive);
         public decimal LastOrderPrice(bool? isActive) => _dal.LastOrderPrice(isActive);
     }
 }

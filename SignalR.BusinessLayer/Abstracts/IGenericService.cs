@@ -7,6 +7,6 @@
         T Delete(T entity);
         T GetByID(int id);
         List<T> GetListAll();
-        int GetCount(bool? isActive);
+        int GetCount(bool? isActive = default);
     }
 }
