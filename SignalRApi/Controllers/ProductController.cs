@@ -6,9 +6,7 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductController : GenericController<Product, IProductService, ResultProductDto, GetProductDto, CreateProductDto, UpdateProductDto>
+    public class ProductController : GenericController<Product, ResultProductDto, GetProductDto, CreateProductDto, UpdateProductDto>
     {
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
