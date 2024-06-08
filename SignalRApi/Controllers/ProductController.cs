@@ -25,5 +25,17 @@ namespace SignalRApi.Controllers
             var result = _mapper.Map<List<ResultProductWithCategory>>(_productService.GetProductsWithCategories());
             return Ok(result);
         }
+
+        [HttpGet("ProductCountByCategoryName")]
+        public IActionResult ProductCountByCategoryName(string categoryName = default) => Ok(_productService.ProductCountByCategoryName(categoryName));
+
+        [HttpGet("ProductPriceAvg")]
+        public IActionResult ProductPriceAvg(int? categoryId) => Ok(_productService.ProductPriceAvg(categoryId));
+
+        [HttpGet("ProductNameByMaxPrice")]
+        public IActionResult ProductNameByMaxPrice(int? categoryId) => Ok(_productService.ProductNameByMaxPrice(categoryId));
+
+        [HttpGet("ProductNameByMinPrice")]
+        public IActionResult ProductNameByMinPrice(int? categoryId) => Ok(_productService.ProductNameByMinPrice(categoryId));
     }
 }

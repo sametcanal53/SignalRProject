@@ -1,23 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SignalR.BusinessLayer.Abstracts;
+﻿using SignalR.BusinessLayer.Abstracts;
 using SignalR.DataAccessLayer.Abstracts;
-using SignalR.DataAccessLayer.Concretes;
 using SignalR.EntityLayer.Entities;
 
 namespace SignalR.BusinessLayer.Concretes
 {
     public class ProductManager : GenericManager<Product>, IProductService
     {
-        private readonly SignalRContext _context;
-        public ProductManager(IGenericDal<Product> dal, SignalRContext context) : base(dal)
+        private readonly IProductDal _dal;
+
+        public ProductManager(IProductDal dal) : base(dal)
         {
-            _context = context;
+            _dal = dal;
         }
 
-        public List<Product> GetProductsWithCategories()
-        {
-            var result = _context.Products.Include(p => p.Category).ToList();
-            return result;
-        }
+        public List<Product> GetProductsWithCategories() => _dal.GetProductsWithCategories();
+        public int ProductCountByCategoryName(string categoryName) => _dal.ProductCountByCategoryName(categoryName);
+        public decimal ProductPriceAvg(int? categoryId) => _dal.ProductPriceAvg(categoryId);
+        public string ProductNameByMaxPrice(int? categoryId) => _dal.ProductNameByMaxPrice(categoryId);
+        public string ProductNameByMinPrice(int? categoryId) => _dal.ProductNameByMinPrice(categoryId);
+
     }
 }
