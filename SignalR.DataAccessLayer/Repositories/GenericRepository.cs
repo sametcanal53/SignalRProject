@@ -36,7 +36,7 @@ namespace SignalR.DataAccessLayer.Repositories
         public virtual int GetCount(bool? isActive)
         {
             var list = GetListAll();
-            return list.Where(c => !isActive.HasValue || c.GetType().GetProperty("Status") == null ? true : c.GetType().GetProperty("Status").GetValue(c).Equals(isActive.Value)).Count();
+            return list.Where(c => !isActive.HasValue || c.GetType().GetProperty("State") == null ? true : c.GetType().GetProperty("State").GetValue(c).Equals(isActive.Value)).Count();
         }
     }
 }
