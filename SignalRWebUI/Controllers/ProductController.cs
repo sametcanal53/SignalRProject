@@ -7,7 +7,7 @@ using System.Net.Http;
 
 namespace SignalRWebUI.Controllers
 {
-    public class ProductController : BaseController<ResultProductDto, CreateProductDto, UpdateProductDto>
+    public class ProductController : GenericController<ResultProductDto, CreateProductDto, UpdateProductDto>
     {
         private readonly IHttpClientFactory _httpClientFactory;
         public ProductController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
@@ -50,6 +50,7 @@ namespace SignalRWebUI.Controllers
             return View();
         }
 
+        // Private Methods
         private async Task GetSelecListItems()
         {
             var client = _httpClientFactory.CreateClient();

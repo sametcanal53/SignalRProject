@@ -3,7 +3,7 @@ using SignalRWebUI.Dtos.Concretes.SocialMedias;
 
 namespace SignalRWebUI.Controllers
 {
-    public class SocialMediaController : BaseController<ResultSocialMediaDto, CreateSocialMediaDto, UpdateSocialMediaDto>
+    public class SocialMediaController : GenericController<ResultSocialMediaDto, CreateSocialMediaDto, UpdateSocialMediaDto>
     {
         public SocialMediaController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {

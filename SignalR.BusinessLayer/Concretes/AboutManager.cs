@@ -6,7 +6,7 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class AboutManager : GenericManager<About>, IAboutService
     {
-        public AboutManager(IGenericDal<About> dal) : base(dal)
+        public AboutManager(IAboutDal dal) : base(dal)
         {
         }
     }

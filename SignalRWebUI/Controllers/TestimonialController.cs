@@ -2,7 +2,7 @@
 
 namespace SignalRWebUI.Controllers
 {
-    public class TestimonialController : BaseController<ResultTestimonialDto, CreateTestimonialDto, UpdateTestimonialDto>
+    public class TestimonialController : GenericController<ResultTestimonialDto, CreateTestimonialDto, UpdateTestimonialDto>
     {
         public TestimonialController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {

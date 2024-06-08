@@ -2,7 +2,7 @@
 
 namespace SignalRWebUI.Controllers
 {
-    public class ContactController : BaseController<ResultContactDto, CreateContactDto, UpdateContactDto>
+    public class ContactController : GenericController<ResultContactDto, CreateContactDto, UpdateContactDto>
     {
         public ContactController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {

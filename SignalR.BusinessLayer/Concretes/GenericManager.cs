@@ -17,5 +17,6 @@ namespace SignalR.BusinessLayer.Concretes
         public virtual T Add(T entity) => _dal.Add(entity);
         public virtual T Update(T entity) => _dal.Update(entity);
         public virtual T Delete(T entity) => _dal.Delete(entity);
+        public virtual int GetCount(bool? isActive) => _dal.GetCount(isActive);
     }
 }

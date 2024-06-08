@@ -6,7 +6,7 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class CategoryManager : GenericManager<Category>, ICategoryService
     {
-        public CategoryManager(IGenericDal<Category> dal) : base(dal)
+        public CategoryManager(ICategoryDal dal) : base(dal)
         {
         }
     }

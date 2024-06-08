@@ -2,7 +2,7 @@
 
 namespace SignalRWebUI.Controllers
 {
-    public class FeatureController : BaseController<ResultFeatureDto, CreateFeatureDto, UpdateFeatureDto>
+    public class FeatureController : GenericController<ResultFeatureDto, CreateFeatureDto, UpdateFeatureDto>
     {
         public FeatureController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {

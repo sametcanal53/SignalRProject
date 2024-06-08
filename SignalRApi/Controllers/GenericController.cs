@@ -53,5 +53,8 @@ namespace SignalRApi.Controllers
             return Ok(result);
         }
 
+        [HttpGet("Count")]
+        public virtual IActionResult GetCount([FromQuery] bool? isActive) => Ok(_service.GetCount(isActive));
+
     }
 }

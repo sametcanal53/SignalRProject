@@ -6,7 +6,7 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class TestimonialManager : GenericManager<Testimonial>, ITestimonialService
     {
-        public TestimonialManager(IGenericDal<Testimonial> dal) : base(dal)
+        public TestimonialManager(ITestimonialDal dal) : base(dal)
         {
         }
     }

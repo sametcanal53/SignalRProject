@@ -6,7 +6,7 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class ContactManager : GenericManager<Contact>, IContactService
     {
-        public ContactManager(IGenericDal<Contact> dal) : base(dal)
+        public ContactManager(IContactDal dal) : base(dal)
         {
         }
     }

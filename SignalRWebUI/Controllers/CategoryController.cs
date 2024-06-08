@@ -2,7 +2,7 @@
 
 namespace SignalRWebUI.Controllers
 {
-    public class CategoryController : BaseController<ResultCategoryDto, CreateCategoryDto, UpdateCategoryDto>
+    public class CategoryController : GenericController<ResultCategoryDto, CreateCategoryDto, UpdateCategoryDto>
     {
         public CategoryController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {

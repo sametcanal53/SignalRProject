@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SignalRWebUI.Controllers
 {
-    public class BaseController<TGetListModel, TCreateDto, TUpdateDto> : Controller
+    public class GenericController<TGetListModel, TCreateDto, TUpdateDto> : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public BaseController(IHttpClientFactory httpClientFactory)
+        public GenericController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }

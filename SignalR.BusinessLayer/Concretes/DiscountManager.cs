@@ -6,7 +6,7 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class DiscountManager : GenericManager<Discount>, IDiscountService
     {
-        public DiscountManager(IGenericDal<Discount> dal) : base(dal)
+        public DiscountManager(IDiscountDal dal) : base(dal)
         {
         }
     }

@@ -6,7 +6,7 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class SocialMediaManager : GenericManager<SocialMedia>, ISocialMediaService
     {
-        public SocialMediaManager(IGenericDal<SocialMedia> dal) : base(dal)
+        public SocialMediaManager(ISocialMediaDal dal) : base(dal)
         {
         }
     }

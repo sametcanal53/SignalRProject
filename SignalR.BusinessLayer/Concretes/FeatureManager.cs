@@ -6,7 +6,7 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class FeatureManager : GenericManager<Feature>, IFeatureService
     {
-        public FeatureManager(IGenericDal<Feature> dal) : base(dal)
+        public FeatureManager(IFeatureDal dal) : base(dal)
         {
         }
     }

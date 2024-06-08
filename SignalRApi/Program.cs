@@ -20,8 +20,8 @@ builder.Services.AddCors(opt =>
 builder.Services.AddSignalR();
 
 builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
 builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
 
 #region Repositories, Services, Dals
 builder.Services.AddScoped<IAboutService, AboutManager>();
@@ -76,3 +76,4 @@ app.MapControllers();
 app.MapHub<SignalRHub>("/signalrhub");
 
 app.Run();
+

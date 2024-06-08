@@ -6,7 +6,7 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class BookingManager : GenericManager<Booking>, IBookingService
     {
-        public BookingManager(IGenericDal<Booking> dal) : base(dal)
+        public BookingManager(IBookingDal dal) : base(dal)
         {
         }
     }
