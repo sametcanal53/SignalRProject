@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstracts;
+using SignalR.EntityLayer.Entities;
 namespace SignalRApi.Controllers
 {
     public class MoneyCasesController : GenericController

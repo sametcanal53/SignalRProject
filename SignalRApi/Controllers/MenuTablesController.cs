@@ -7,7 +7,7 @@ namespace SignalRApi.Controllers
 {
     public class MenuTablesController : GenericController<MenuTable, ResultMenuTableDto, GetMenuTableDto, CreateMenuTableDto, UpdateMenuTableDto>
     {
-        public MenuTablesController(IMenuTableService service, IMapper mapper) : base(service, mapper)
+        public MenuTablesController(IMenuTableService menuTableService, IMapper mapper) : base(menuTableService, mapper)
         {
         }
     }
