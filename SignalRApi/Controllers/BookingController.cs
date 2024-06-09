@@ -7,9 +7,9 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class BookingsController : GenericController<Booking, GetBookingDto, CreateBookingDto, UpdateBookingDto>
+    public class BookingController : GenericController<Booking, GetBookingDto, CreateBookingDto, UpdateBookingDto>
     {
-        public BookingsController(IBookingService bookingService, IMapper mapper) : base(bookingService, mapper)
+        public BookingController(IBookingService bookingService, IMapper mapper) : base(bookingService, mapper)
         {
         }
     }

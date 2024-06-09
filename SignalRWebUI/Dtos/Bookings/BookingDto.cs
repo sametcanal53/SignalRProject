@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.Bookings
+﻿using SignalR.Core.Concretes;
+
+namespace SignalRWebUI.Dtos.Bookings
 {
-    public class BookingDto
+    public class BookingDto : Dto
     {
         public string Name { get; set; }
         public string Email { get; set; }

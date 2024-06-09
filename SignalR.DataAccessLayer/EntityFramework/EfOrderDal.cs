@@ -1,4 +1,5 @@
-﻿using SignalR.DataAccessLayer.Abstracts;
+﻿using SignalR.Core.Extensions;
+using SignalR.DataAccessLayer.Abstracts;
 using SignalR.DataAccessLayer.Concretes;
 using SignalR.DataAccessLayer.Repositories;
 using SignalR.EntityLayer.Entities;
@@ -13,6 +14,6 @@ namespace SignalR.DataAccessLayer.EntityFramework
             _context = context;
         }
 
-        public decimal LastOrderPrice(bool? isActive) => IsActiveConditions(_context.Orders, isActive).OrderByDescending(o => o.Id).Select(o => o.TotalPrice).FirstOrDefault();
+        public decimal LastOrderPrice(bool? isActive) => EnumerableExtensions.IsActiveConditions(_context.Orders, isActive).OrderByDescending(o => o.Id).Select(o => o.TotalPrice).FirstOrDefault();
     }
 }

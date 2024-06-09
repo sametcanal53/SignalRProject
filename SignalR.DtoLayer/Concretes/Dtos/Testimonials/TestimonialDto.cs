@@ -1,6 +1,8 @@
-﻿namespace SignalR.DtoLayer.Concretes.Dtos.Testimonials
+﻿using SignalR.Core.Concretes;
+
+namespace SignalR.DtoLayer.Concretes.Dtos.Testimonials
 {
-    public class TestimonialDto
+    public class TestimonialDto : Dto
     {
         public string Name { get; set; }
         public string Title { get; set; }

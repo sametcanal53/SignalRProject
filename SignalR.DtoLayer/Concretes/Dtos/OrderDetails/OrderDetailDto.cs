@@ -1,6 +1,8 @@
-﻿namespace SignalR.DtoLayer.Concretes.Dtos.OrderDetails
+﻿using SignalR.Core.Concretes;
+
+namespace SignalR.DtoLayer.Concretes.Dtos.OrderDetails
 {
-    public class OrderDetailDto
+    public class OrderDetailDto : Dto
     {
         public int ProductId { get; set; }
         public int OrderId { get; set; }

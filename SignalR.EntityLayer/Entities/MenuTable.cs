@@ -7,7 +7,7 @@ namespace SignalR.EntityLayer.Entities
     {
         public string Name { get; set; }
         public EnumMenuTableStatus Status { get; set; }
-        public List<Basket> Baskets { get; set; }
+        public virtual List<Basket> Baskets { get; set; }
 
     }
 }

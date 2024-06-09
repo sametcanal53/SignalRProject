@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.Abouts
+﻿using SignalR.Core.Concretes;
+
+namespace SignalRWebUI.Dtos.Abouts
 {
-    public class AboutDto
+    public class AboutDto : Dto
     {
         public string ImageUrl { get; set; }
         public string Title { get; set; }

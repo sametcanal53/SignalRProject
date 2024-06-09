@@ -8,22 +8,15 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class ProductsController : GenericController<Product, GetProductDto, CreateProductDto, UpdateProductDto>
+    public class ProductController : GenericController<Product, GetProductDto, CreateProductDto, UpdateProductDto>
     {
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public ProductsController(IProductService productService, IMapper mapper) : base(productService, mapper)
+        public ProductController(IProductService productService, IMapper mapper) : base(productService, mapper)
         {
             _productService = productService;
             _mapper = mapper;
-        }
-
-        [HttpGet("GetProductListWithCategory")]
-        public IActionResult GetProductListWithCategory()
-        {
-            var result = _mapper.Map<List<GetProductWithCategoryDto>>(_productService.GetProductsWithCategories());
-            return Ok(result);
         }
 
         [HttpGet("ProductCountByCategoryName")]

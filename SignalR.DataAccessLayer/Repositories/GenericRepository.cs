@@ -1,4 +1,5 @@
-﻿using SignalR.Core.Extensions;
+﻿using Microsoft.EntityFrameworkCore;
+using SignalR.Core.Extensions;
 using SignalR.DataAccessLayer.Abstracts;
 using SignalR.DataAccessLayer.Concretes;
 
@@ -12,8 +13,8 @@ namespace SignalR.DataAccessLayer.Repositories
         {
             _context = context;
         }
-        public virtual List<T> GetListAll() => _context.Set<T>().ToList();
-        public virtual T GetByID(int id) => _context.Set<T>().Find(id);
+        public virtual List<T> GetList() => _context.Set<T>().ToList();
+        public virtual T GetById(int id) => _context.Set<T>().Find(id);
         public virtual T Add(T entity)
         {
             _context.Add(entity);
@@ -36,7 +37,7 @@ namespace SignalR.DataAccessLayer.Repositories
 
         public virtual int GetCount(bool? isActive)
         {
-            var list = GetListAll();
+            var list = GetList();
             return EnumerableExtensions.IsActiveConditions(list, isActive).Count();
         }
 

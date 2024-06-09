@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SignalRWebUI.Dtos.Concretes.Contacts;
+using SignalRWebUI.Dtos.Contacts.Model;
 
 namespace SignalRWebUI.ViewComponents.UILayoutComponents
 {
@@ -17,10 +17,10 @@ namespace SignalRWebUI.ViewComponents.UILayoutComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:5353/api/Contacts/GetContactWithSocialMedias");
+            var response = await client.GetAsync($"https://localhost:5353/api/Contact/");
             var content = await response.Content.ReadAsStringAsync();
-            var contacts = JsonConvert.DeserializeObject<List<ResultContactWithSocialMediaDto>>(content);
-            return View(contacts);
+            var result = JsonConvert.DeserializeObject<List<GetContactDto>>(content);
+            return View(result);
         }
     }
 }

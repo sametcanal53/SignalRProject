@@ -7,9 +7,9 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class TestimonialsController : GenericController<Testimonial, GetTestimonialDto, CreateTestimonialDto, UpdateTestimonialDto>
+    public class TestimonialController : GenericController<Testimonial, GetTestimonialDto, CreateTestimonialDto, UpdateTestimonialDto>
     {
-        public TestimonialsController(ITestimonialService testimonialService, IMapper mapper) : base(testimonialService, mapper)
+        public TestimonialController(ITestimonialService testimonialService, IMapper mapper) : base(testimonialService, mapper)
         {
         }
     }

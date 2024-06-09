@@ -28,8 +28,24 @@
                                 <input type="text" class="form-control" asp-for="Phone" id="phone" placeholder="Telefon Numarası Giriniz">
                             </div>
                             <div class="form-group">
-                                <label for="description">Açıklama</label>
-                                <textarea rows="5" type="text" class="form-control" asp-for="FooterDescription" id="description" placeholder="Açıklama Giriniz"></textarea>
+                                <label for="footerTitle">Alt Başlık</label>
+                                <input type="text" class="form-control" asp-for="FooterTitle" id="footerTitle" placeholder="Alt Başlık Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="footerDescription">Alt Başlık Açıklama</label>
+                                <textarea rows="5" type="text" class="form-control" asp-for="FooterDescription" id="footerDescription" placeholder="Alt Başlık Açıklaması Giriniz"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="openDays">Çalışma Günü</label>
+                                <input type="text" class="form-control" asp-for="OpenDays" id="openDays" placeholder="Çalışma Günü Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="openDaysDescription">Çalışma Günü Detayı</label>
+                                <input type="text" class="form-control" asp-for="OpenDaysDescription" id="openDaysDescription" placeholder="Çalışma Günü Detayı Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="openHours">Çalışma Saatleri</label>
+                                <input type="text" class="form-control" asp-for="OpenHours" id="openHours" placeholder="Çalışma Saatlerini Giriniz">
                             </div>
                         </div>
                         <div class="card-action">
@@ -41,4 +57,3 @@
         </div>
     </div>
 </div>
-

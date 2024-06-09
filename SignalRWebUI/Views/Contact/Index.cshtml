@@ -1,4 +1,4 @@
-﻿@model List<ResultContactDto>
+﻿@model List<GetContactDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -24,7 +24,12 @@
                                     <th scope="col">Konum</th>
                                     <th scope="col">E-Mail</th>
                                     <th scope="col">Telefon</th>
-                                    <th scope="col">Açıklama</th>
+                                    <th scope="col">Alt Başlık</th>
+                                    <th scope="col">Alt Başlık Açıklaması</th>
+                                    <th scope="col">Çalışma Günü</th>
+                                    <th scope="col">Çalışma Günü Detayı</th>
+                                    <th scope="col">Çalışma Saatleri</th>
+                                    <th scope="col">Durum</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
                                 </tr>
@@ -37,7 +42,12 @@
                                         <td>@item.Location</td>
                                         <td>@item.Email</td>
                                         <td>@item.Phone</td>
+                                        <td>@item.FooterTitle</td>
                                         <td>@item.FooterDescription</td>
+                                        <td>@item.OpenDays</td>
+                                        <td>@item.OpenDaysDescription</td>
+                                        <td>@item.OpenHours</td>
+                                        <td>@item.State</td>
                                         <td><a href="/Contact/Delete/@item.Id" class="btn btn-danger btn-border btn-round">Sil</a></td>
                                         <td><a href="/Contact/Update/@item.Id" class="btn btn-success btn-border btn-round">Güncelle</a></td>
                                     </tr>

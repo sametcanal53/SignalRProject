@@ -7,7 +7,9 @@ namespace SignalR.DataAccessLayer.Concretes
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-HD1IHUN;Database=SignalRDb;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer("Server=DESKTOP-HD1IHUN;Database=SignalRDb;Trusted_Connection=True;TrustServerCertificate=True");
         }
 
         public DbSet<About> Abouts { get; set; }

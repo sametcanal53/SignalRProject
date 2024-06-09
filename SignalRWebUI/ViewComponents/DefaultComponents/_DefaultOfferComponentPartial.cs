@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SignalRWebUI.Dtos.Concretes.Discounts;
+using SignalRWebUI.Dtos.Discounts.Model;
 
 namespace SignalRWebUI.ViewComponents.DefaultComponents
 {
@@ -17,10 +17,10 @@ namespace SignalRWebUI.ViewComponents.DefaultComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:5353/api/Discounts/");
+            var response = await client.GetAsync($"https://localhost:5353/api/Discount/");
             var content = await response.Content.ReadAsStringAsync();
-            var discounts = JsonConvert.DeserializeObject<List<ResultDiscountDto>>(content);
-            return View(discounts);
+            var result = JsonConvert.DeserializeObject<List<GetDiscountDto>>(content);
+            return View(result);
         }
     }
 }

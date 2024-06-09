@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.MenuTables
+﻿using SignalR.Core.Concretes;
+
+namespace SignalRWebUI.Dtos.MenuTables
 {
-    public class MenuTableDto
+    public class MenuTableDto : Dto
     {
         public string Name { get; set; }
         public string Title { get; set; }

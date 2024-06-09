@@ -13,7 +13,6 @@ namespace SignalR.BusinessLayer.Concretes
             _productDal = productDal;
         }
 
-        public List<Product> GetProductsWithCategories() => _productDal.GetProductsWithCategories();
         public int ProductCountByCategoryName(string categoryName) => _productDal.ProductCountByCategoryName(categoryName);
         public decimal ProductPriceAvg(int? categoryId) => _productDal.ProductPriceAvg(categoryId);
         public string ProductNameByMaxPrice(int? categoryId) => _productDal.ProductNameByMaxPrice(categoryId);

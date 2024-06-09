@@ -2,11 +2,11 @@
 using SignalR.BusinessLayer.Abstracts;
 namespace SignalRApi.Controllers
 {
-    public class MoneyCasesController : GenericController
+    public class MoneyCaseController : GenericController
     {
         private readonly IMoneyCaseService _moneyCaseService;
 
-        public MoneyCasesController(IMoneyCaseService moneyCaseService)
+        public MoneyCaseController(IMoneyCaseService moneyCaseService)
         {
             _moneyCaseService = moneyCaseService;
         }

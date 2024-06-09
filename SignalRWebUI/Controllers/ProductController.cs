@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using SignalRWebUI.Dtos.Concretes.Category;
-using SignalRWebUI.Dtos.Concretes.Products;
+using SignalRWebUI.Dtos.Categories.Model;
+using SignalRWebUI.Dtos.Products.Create;
+using SignalRWebUI.Dtos.Products.Model;
+using SignalRWebUI.Dtos.Products.Update;
 
 namespace SignalRWebUI.Controllers
 {
-    public class ProductController : GenericController<ResultProductDto, CreateProductDto, UpdateProductDto>
+    public class ProductController : GenericController<GetProductDto, CreateProductDto, UpdateProductDto>
     {
         private readonly IHttpClientFactory _httpClientFactory;
         public ProductController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
@@ -14,48 +16,28 @@ namespace SignalRWebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public override async Task<IActionResult> Index()
-        {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/GetProductListWithCategory");
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                var categories = JsonConvert.DeserializeObject<List<ResultProductDto>>(content);
-                return View(categories);
-            }
-            return View();
-        }
 
         [HttpGet]
         public override async Task<IActionResult> Create()
         {
-            await GetSelecListItems();
+            await GetSelectListItems();
             return View();
         }
 
         [HttpGet]
         public override async Task<IActionResult> Update(int id)
         {
-            await GetSelecListItems();
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/{id}");
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                var category = JsonConvert.DeserializeObject<UpdateProductDto>(content);
-                return View(category);
-            }
-            return View();
+            await GetSelectListItems();
+            return base.Update(id).Result;
         }
 
         // Private Methods
-        private async Task GetSelecListItems()
+        private async Task GetSelectListItems()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:5353/api/Categories");
+            var response = await client.GetAsync($"https://localhost:5353/api/Category");
             var content = await response.Content.ReadAsStringAsync();
-            var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(content);
+            var categories = JsonConvert.DeserializeObject<List<GetCategoryDto>>(content);
             List<SelectListItem> selectListItems = (from category in categories
                                                     select new SelectListItem
                                                     {

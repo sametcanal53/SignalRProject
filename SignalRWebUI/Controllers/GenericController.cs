@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SignalRWebUI.Controllers
 {
-    public class GenericController<TGetListModel, TCreateDto, TUpdateDto> : Controller
+    public class GenericController<TModel, TCreateDto, TUpdateDto> : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
@@ -21,8 +21,8 @@ namespace SignalRWebUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                var categories = JsonConvert.DeserializeObject<List<TGetListModel>>(content);
-                return View(categories);
+                var result = JsonConvert.DeserializeObject<List<TModel>>(content);
+                return View(result);
             }
             return View();
         }
@@ -36,9 +36,6 @@ namespace SignalRWebUI.Controllers
         [HttpPost]
         public virtual async Task<IActionResult> Create(TCreateDto createDto)
         {
-            var statusProperty = typeof(TCreateDto).GetProperty("Status");
-            statusProperty?.SetValue(createDto, true);
-
             var client = _httpClientFactory.CreateClient();
             var content = new StringContent(JsonConvert.SerializeObject(createDto), Encoding.UTF8, "application/json");
             var response = await client.PostAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}", content);
@@ -68,8 +65,8 @@ namespace SignalRWebUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                var category = JsonConvert.DeserializeObject<TUpdateDto>(content);
-                return View(category);
+                var result = JsonConvert.DeserializeObject<TUpdateDto>(content);
+                return View(result);
             }
             return View();
         }

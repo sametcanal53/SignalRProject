@@ -7,9 +7,9 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class DiscountsController : GenericController<Discount, GetDiscountDto, CreateDiscountDto, UpdateDiscountDto>
+    public class DiscountController : GenericController<Discount, GetDiscountDto, CreateDiscountDto, UpdateDiscountDto>
     {
-        public DiscountsController(IDiscountService discountService, IMapper mapper) : base(discountService, mapper)
+        public DiscountController(IDiscountService discountService, IMapper mapper) : base(discountService, mapper)
         {
         }
     }

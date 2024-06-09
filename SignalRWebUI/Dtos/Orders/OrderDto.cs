@@ -1,8 +1,9 @@
-﻿using SignalR.Enums;
+﻿using SignalR.Core.Concretes;
+using SignalR.Enums;
 
 namespace SignalRWebUI.Dtos.Orders
 {
-    public class OrderDto
+    public class OrderDto : Dto
     {
         public string TableNumber { get; set; }
         public string Description { get; set; }

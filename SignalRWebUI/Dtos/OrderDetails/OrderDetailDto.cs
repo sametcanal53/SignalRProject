@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.OrderDetails
+﻿using SignalR.Core.Concretes;
+
+namespace SignalRWebUI.Dtos.OrderDetails
 {
-    public class OrderDetailDto
+    public class OrderDetailDto : Dto
     {
         public int ProductId { get; set; }
         public int OrderId { get; set; }

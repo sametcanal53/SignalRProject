@@ -10,6 +10,6 @@ namespace SignalR.EntityLayer.Entities
         public DateTime Date { get; set; }
         public decimal TotalPrice { get; set; }
         public EnumOrderStatus Status { get; set; }
-        public List<OrderDetail> OrderDetails { get; set; }
+        public virtual List<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SignalR.DtoLayer.Concretes.Dtos.Products;
 using SignalR.DtoLayer.Concretes.Dtos.Products.Create;
 using SignalR.DtoLayer.Concretes.Dtos.Products.Model;
 using SignalR.DtoLayer.Concretes.Dtos.Products.Update;
@@ -10,10 +11,10 @@ namespace SignalRApi.Mapping
     {
         public ProductMapping()
         {
+            CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Product, GetProductDto>().ReverseMap();
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
-            CreateMap<Product, GetProductWithCategoryDto>().ReverseMap();
         }
     }
 }

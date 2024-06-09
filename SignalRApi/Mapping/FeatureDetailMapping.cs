@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SignalR.DtoLayer.Concretes.Dtos.FeatureDetails;
 using SignalR.DtoLayer.Concretes.Dtos.FeatureDetails.Create;
 using SignalR.DtoLayer.Concretes.Dtos.FeatureDetails.Model;
 using SignalR.DtoLayer.Concretes.Dtos.FeatureDetails.Update;
@@ -10,6 +11,7 @@ namespace SignalRApi.Mapping
     {
         public FeatureDetailMapping()
         {
+            CreateMap<FeatureDetail, FeatureDetailDto>().ReverseMap();
             CreateMap<FeatureDetail, GetFeatureDetailDto>().ReverseMap();
             CreateMap<FeatureDetail, CreateFeatureDetailDto>().ReverseMap();
             CreateMap<FeatureDetail, UpdateFeatureDetailDto>().ReverseMap();

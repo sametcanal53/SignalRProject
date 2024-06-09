@@ -11,13 +11,13 @@
             <div class="col-md-12">
                 <form method="post">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header d-flex justify-content-between align-items-center">
                             <div class="card-title">Müşteri Yorum Güncelle</div>
+                            <input type="checkbox" data-toggle="toggle" data-onstyle="info" data-style="btn-round" id="state" asp-for="State">
                         </div>
                         <div class="card-body">
                             <input type="hidden" asp-for="Id" />
                             <input type="hidden" asp-for="Status" />
-                            <input type="hidden" asp-for="State" />
                             <div class="form-group">
                                 <label for="name">Ad Soyad</label>
                                 <input type="text" class="form-control" asp-for="Name" id="name" placeholder="Ad Soyad Giriniz">

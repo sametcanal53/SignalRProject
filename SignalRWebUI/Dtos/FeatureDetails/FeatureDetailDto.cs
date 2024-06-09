@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.FeatureDetails
+﻿using SignalR.Core.Concretes;
+
+namespace SignalRWebUI.Dtos.FeatureDetails
 {
-    public class FeatureDetailDto
+    public class FeatureDetailDto : Dto
     {
         public string Title { get; set; }
         public string Description { get; set; }

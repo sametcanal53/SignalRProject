@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.Baskets
+﻿using SignalR.Core.Concretes;
+
+namespace SignalRWebUI.Dtos.Baskets
 {
-    public class BasketDto
+    public class BasketDto : Dto
     {
         public string Name { get; set; }
         public string Email { get; set; }

@@ -1,6 +1,8 @@
-﻿namespace SignalR.DtoLayer.Concretes.Dtos.Bookings
+﻿using SignalR.Core.Concretes;
+
+namespace SignalR.DtoLayer.Concretes.Dtos.Bookings
 {
-    public class BookingDto
+    public class BookingDto : Dto
     {
         public string Name { get; set; }
         public string Email { get; set; }

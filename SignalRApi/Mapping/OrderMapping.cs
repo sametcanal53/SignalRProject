@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SignalR.DtoLayer.Concretes.Dtos.Orders;
 using SignalR.DtoLayer.Concretes.Dtos.Orders.Create;
 using SignalR.DtoLayer.Concretes.Dtos.Orders.Model;
 using SignalR.DtoLayer.Concretes.Dtos.Orders.Update;
@@ -10,6 +11,7 @@ namespace SignalRApi.Mapping
     {
         public OrderMapping()
         {
+            CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<Order, GetOrderDto>().ReverseMap();
             CreateMap<Order, CreateOrderDto>().ReverseMap();
             CreateMap<Order, UpdateOrderDto>().ReverseMap();

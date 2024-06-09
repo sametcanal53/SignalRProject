@@ -9,8 +9,8 @@ namespace SignalR.EntityLayer.Entities
         public decimal Price { get; set; }
         public string ImageUrl { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
-        public List<OrderDetail> OrderDetails { get; set; }
-        public List<Basket> Baskets { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual List<OrderDetail> OrderDetails { get; set; }
+        public virtual List<Basket> Baskets { get; set; }
     }
 }

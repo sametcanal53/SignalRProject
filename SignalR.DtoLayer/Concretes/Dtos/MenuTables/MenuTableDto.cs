@@ -1,6 +1,8 @@
-﻿namespace SignalR.DtoLayer.Concretes.Dtos.MenuTables
+﻿using SignalR.Core.Concretes;
+
+namespace SignalR.DtoLayer.Concretes.Dtos.MenuTables
 {
-    public class MenuTableDto
+    public class MenuTableDto : Dto
     {
         public string Name { get; set; }
         public string Title { get; set; }

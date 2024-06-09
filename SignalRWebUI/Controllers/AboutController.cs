@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SignalRWebUI.Dtos.Concretes.Abouts;
+﻿using SignalRWebUI.Dtos.Abouts.Create;
+using SignalRWebUI.Dtos.Abouts.Model;
+using SignalRWebUI.Dtos.Abouts.Update;
 
 namespace SignalRWebUI.Controllers
 {
-    public class AboutController : GenericController<ResultAboutDto, CreateAboutDto, UpdateAboutDto>
+    public class AboutController : GenericController<GetAboutDto, CreateAboutDto, UpdateAboutDto>
     {
         public AboutController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {

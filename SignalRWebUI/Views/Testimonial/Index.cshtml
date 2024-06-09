@@ -1,4 +1,4 @@
-﻿@model List<ResultTestimonialDto>
+﻿@model List<GetTestimonialDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -22,6 +22,8 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Ad Soyad</th>
+                                    <th scope="col">Unvan</th>
+                                    <th scope="col">Yorum</th>
                                     <th scope="col">Durum</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
@@ -33,7 +35,9 @@
                                     <tr>
                                         <td>@item.Id</td>
                                         <td>@item.Name</td>
-                                        <td>@item.Status</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Comment</td>
+                                        <td>@item.State</td>
                                         <td><a href="/Testimonial/Delete/@item.Id" class="btn btn-danger btn-border btn-round">Sil</a></td>
                                         <td><a href="/Testimonial/Update/@item.Id" class="btn btn-success btn-border btn-round">Güncelle</a></td>
                                     </tr>

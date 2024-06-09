@@ -7,9 +7,9 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class MenuTablesController : GenericController<MenuTable, GetMenuTableDto, CreateMenuTableDto, UpdateMenuTableDto>
+    public class MenuTableController : GenericController<MenuTable, GetMenuTableDto, CreateMenuTableDto, UpdateMenuTableDto>
     {
-        public MenuTablesController(IMenuTableService menuTableService, IMapper mapper) : base(menuTableService, mapper)
+        public MenuTableController(IMenuTableService menuTableService, IMapper mapper) : base(menuTableService, mapper)
         {
         }
     }

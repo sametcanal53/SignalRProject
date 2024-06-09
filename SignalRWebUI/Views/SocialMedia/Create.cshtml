@@ -26,7 +26,11 @@
                             <div class="form-group">
                                 <label for="url">Link</label>
                                 <input type="text" class="form-control" asp-for="Url" id="url" placeholder="Link Giriniz">
-                            </div>           
+                            </div>
+                            <div class="form-group">
+                                <label for="price">İletişim</label>
+                                @Html.DropDownListFor(x => x.ContactId, ViewBag.Contacts as List<SelectListItem>, new { @class = "form-control" })
+                            </div>
                         </div>
                         <div class="card-action">
                             <button class="btn btn-primary">Ekle</button>

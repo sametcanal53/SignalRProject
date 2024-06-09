@@ -1,6 +1,8 @@
-﻿namespace SignalRWebUI.Dtos.Contacts
+﻿using SignalR.Core.Concretes;
+
+namespace SignalRWebUI.Dtos.Contacts
 {
-    public class ContactDto
+    public class ContactDto : Dto
     {
         public string Location { get; set; }
         public string Phone { get; set; }

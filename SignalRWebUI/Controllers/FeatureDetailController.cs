@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using SignalRWebUI.Dtos.SocialMedias.Create;
-using SignalRWebUI.Dtos.SocialMedias.Model;
-using SignalRWebUI.Dtos.SocialMedias.Update;
-using System.Net.Http;
-using SignalRWebUI.Dtos.Contacts.Model;
+using SignalRWebUI.Dtos.FeatureDetails.Create;
+using SignalRWebUI.Dtos.FeatureDetails.Model;
+using SignalRWebUI.Dtos.FeatureDetails.Update;
+using SignalRWebUI.Dtos.Features.Model;
 
 namespace SignalRWebUI.Controllers
 {
-    public class SocialMediaController : GenericController<GetSocialMediaDto, CreateSocialMediaDto, UpdateSocialMediaDto>
+    public class FeatureDetailController : GenericController<GetFeatureDetailDto, CreateFeatureDetailDto, UpdateFeatureDetailDto>
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public SocialMediaController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
+        public FeatureDetailController(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -35,16 +34,16 @@ namespace SignalRWebUI.Controllers
         private async Task GetSelectListItems()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:5353/api/Contact");
+            var response = await client.GetAsync($"https://localhost:5353/api/Feature");
             var content = await response.Content.ReadAsStringAsync();
-            var contacts = JsonConvert.DeserializeObject<List<GetContactDto>>(content);
-            List<SelectListItem> selectListItems = (from contact in contacts
+            var features = JsonConvert.DeserializeObject<List<GetFeatureDto>>(content);
+            List<SelectListItem> selectListItems = (from feature in features
                                                     select new SelectListItem
                                                     {
-                                                        Text = contact.FooterTitle,
-                                                        Value = contact.Id.ToString()
+                                                        Text = feature.Name,
+                                                        Value = feature.Id.ToString()
                                                     }).ToList();
-            ViewBag.Contacts = selectListItems;
+            ViewBag.Features = selectListItems;
         }
     }
 }

@@ -7,9 +7,9 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class FeatureDetailsController : GenericController<FeatureDetail, GetFeatureDetailDto, CreateFeatureDetailDto, UpdateFeatureDetailDto>
+    public class FeatureDetailController : GenericController<FeatureDetail, GetFeatureDetailDto, CreateFeatureDetailDto, UpdateFeatureDetailDto>
     {
-        public FeatureDetailsController(IFeatureDetailService featureDetailService, IMapper mapper) : base(featureDetailService, mapper)
+        public FeatureDetailController(IFeatureDetailService featureDetailService, IMapper mapper) : base(featureDetailService, mapper)
         {
         }
     }

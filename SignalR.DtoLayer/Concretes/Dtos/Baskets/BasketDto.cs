@@ -1,6 +1,8 @@
-﻿namespace SignalR.DtoLayer.Concretes.Dtos.Baskets
+﻿using SignalR.Core.Concretes;
+
+namespace SignalR.DtoLayer.Concretes.Dtos.Baskets
 {
-    public class BasketDto
+    public class BasketDto : Dto
     {
         public string Name { get; set; }
         public string Email { get; set; }

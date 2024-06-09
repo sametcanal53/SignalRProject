@@ -1,6 +1,8 @@
-﻿namespace SignalR.DtoLayer.Concretes.Dtos.FeatureDetails
+﻿using SignalR.Core.Concretes;
+
+namespace SignalR.DtoLayer.Concretes.Dtos.FeatureDetails
 {
-    public class FeatureDetailDto
+    public class FeatureDetailDto : Dto
     {
         public string Title { get; set; }
         public string Description { get; set; }

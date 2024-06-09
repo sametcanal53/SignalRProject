@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SignalR.DtoLayer.Concretes.Dtos.Bookings;
 using SignalR.DtoLayer.Concretes.Dtos.Bookings.Create;
 using SignalR.DtoLayer.Concretes.Dtos.Bookings.Model;
 using SignalR.DtoLayer.Concretes.Dtos.Bookings.Update;
@@ -10,6 +11,7 @@ namespace SignalRApi.Mapping
     {
         public BookingMapping()
         {
+            CreateMap<Booking, BookingDto>().ReverseMap();
             CreateMap<Booking, GetBookingDto>().ReverseMap();
             CreateMap<Booking, CreateBookingDto>().ReverseMap();
             CreateMap<Booking, UpdateBookingDto>().ReverseMap();

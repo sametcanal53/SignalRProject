@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SignalR.DtoLayer.Concretes.Dtos.Categories;
 using SignalR.DtoLayer.Concretes.Dtos.Categories.Create;
 using SignalR.DtoLayer.Concretes.Dtos.Categories.Model;
 using SignalR.DtoLayer.Concretes.Dtos.Categories.Update;
@@ -10,6 +11,7 @@ namespace SignalRApi.Mapping
     {
         public CategoryMapping()
         {
+            CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Category, GetCategoryDto>().ReverseMap();
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();

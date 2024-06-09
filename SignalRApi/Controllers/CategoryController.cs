@@ -7,9 +7,9 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class CategoriesController : GenericController<Category, GetCategoryDto, CreateCategoryDto, UpdateCategoryDto>
+    public class CategoryController : GenericController<Category, GetCategoryDto, CreateCategoryDto, UpdateCategoryDto>
     {
-        public CategoriesController(ICategoryService categoryService, IMapper mapper) : base(categoryService, mapper)
+        public CategoryController(ICategoryService categoryService, IMapper mapper) : base(categoryService, mapper)
         {
         }
     }

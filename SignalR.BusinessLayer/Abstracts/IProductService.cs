@@ -4,7 +4,6 @@ namespace SignalR.BusinessLayer.Abstracts
 {
     public interface IProductService : IGenericService<Product>
     {
-        List<Product> GetProductsWithCategories();
         int ProductCountByCategoryName(string categoryName);
         decimal ProductPriceAvg(int? categoryId = default);
         string ProductNameByMaxPrice(int? categoryId = default);

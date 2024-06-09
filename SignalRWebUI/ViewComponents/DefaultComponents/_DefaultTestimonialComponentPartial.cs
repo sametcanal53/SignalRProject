@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SignalRWebUI.Dtos.Concretes.Testimonials;
+using SignalRWebUI.Dtos.Testimonials.Model;
 
 namespace SignalRWebUI.ViewComponents.DefaultComponents
 {
@@ -17,10 +17,10 @@ namespace SignalRWebUI.ViewComponents.DefaultComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:5353/api/Testimonials");
+            var response = await client.GetAsync($"https://localhost:5353/api/Testimonial");
             var content = await response.Content.ReadAsStringAsync();
-            var testimonials = JsonConvert.DeserializeObject<List<ResultTestimonialDto>>(content);
-            return View(testimonials);
+            var result = JsonConvert.DeserializeObject<List<GetTestimonialDto>>(content);
+            return View(result);
         }
     }
 }

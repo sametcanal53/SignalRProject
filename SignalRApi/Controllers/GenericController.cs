@@ -24,7 +24,7 @@ namespace SignalRApi.Controllers
         }
 
         [HttpGet]
-        public virtual IActionResult GetAll() => Ok(_mapper.Map<List<TModel>>(_service.GetListAll()));
+        public virtual IActionResult GetList() => Ok(_mapper.Map<List<TModel>>(_service.GetList()));
 
         [HttpGet("{id}")]
         public virtual IActionResult Get(int id) => Ok(_mapper.Map<TModel>(_service.GetById(id)));
