@@ -1,13 +1,11 @@
 ﻿using SignalR.Core.Concretes;
+using SignalR.Enums;
 
 namespace SignalR.DtoLayer.Concretes.Dtos.MenuTables
 {
     public class MenuTableDto : Dto
     {
         public string Name { get; set; }
-        public string Title { get; set; }
-        public string Comment { get; set; }
-        public string ImageUrl { get; set; }
-        public bool Status { get; set; }
+        public EnumMenuTableStatus Status { get; set; }
     }
 }

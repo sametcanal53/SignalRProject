@@ -9,6 +9,6 @@ namespace SignalR.EntityLayer.Entities
 
         public int MenuTableId { get; set; }
         public virtual MenuTable MenuTable { get; set; }
-
+        public int Amount { get; set; }
     }
 }
