@@ -24,6 +24,7 @@ namespace SignalR.DataAccessLayer.Concretes
         public DbSet<MoneyCase> MoneyCases { get; set; }
         public DbSet<MenuTable> MenuTables { get; set; }
         public DbSet<FeatureDetail> FeatureDetails { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
 
     }
 }

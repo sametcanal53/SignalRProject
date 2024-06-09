@@ -50,6 +50,32 @@ namespace SignalR.DataAccessLayer.Migrations
                     b.ToTable("Abouts");
                 });
 
+            modelBuilder.Entity("SignalR.EntityLayer.Entities.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("MenuTableId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("State")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuTableId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Baskets");
+                });
+
             modelBuilder.Entity("SignalR.EntityLayer.Entities.Booking", b =>
                 {
                     b.Property<int>("Id")
@@ -446,6 +472,25 @@ namespace SignalR.DataAccessLayer.Migrations
                     b.ToTable("Testimonials");
                 });
 
+            modelBuilder.Entity("SignalR.EntityLayer.Entities.Basket", b =>
+                {
+                    b.HasOne("SignalR.EntityLayer.Entities.MenuTable", "MenuTable")
+                        .WithMany("Baskets")
+                        .HasForeignKey("MenuTableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SignalR.EntityLayer.Entities.Product", "Product")
+                        .WithMany("Baskets")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MenuTable");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("SignalR.EntityLayer.Entities.FeatureDetail", b =>
                 {
                     b.HasOne("SignalR.EntityLayer.Entities.Feature", "Feature")
@@ -513,6 +558,11 @@ namespace SignalR.DataAccessLayer.Migrations
                     b.Navigation("FeatureDetails");
                 });
 
+            modelBuilder.Entity("SignalR.EntityLayer.Entities.MenuTable", b =>
+                {
+                    b.Navigation("Baskets");
+                });
+
             modelBuilder.Entity("SignalR.EntityLayer.Entities.Order", b =>
                 {
                     b.Navigation("OrderDetails");
@@ -520,6 +570,8 @@ namespace SignalR.DataAccessLayer.Migrations
 
             modelBuilder.Entity("SignalR.EntityLayer.Entities.Product", b =>
                 {
+                    b.Navigation("Baskets");
+
                     b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618

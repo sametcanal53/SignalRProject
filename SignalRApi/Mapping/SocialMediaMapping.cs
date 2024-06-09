@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
-using SignalR.DtoLayer.SocialMediaDto;
+using SignalR.DtoLayer.Concretes.Dtos.SocialMedias.Create;
+using SignalR.DtoLayer.Concretes.Dtos.SocialMedias.Model;
+using SignalR.DtoLayer.Concretes.Dtos.SocialMedias.Update;
 using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Mapping
@@ -8,7 +10,6 @@ namespace SignalRApi.Mapping
     {
         public SocialMediaMapping()
         {
-            CreateMap<SocialMedia, ResultSocialMediaDto>().ReverseMap();
             CreateMap<SocialMedia, GetSocialMediaDto>().ReverseMap();
             CreateMap<SocialMedia, CreateSocialMediaDto>().ReverseMap();
             CreateMap<SocialMedia, UpdateSocialMediaDto>().ReverseMap();

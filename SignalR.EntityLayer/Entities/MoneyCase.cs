@@ -1,4 +1,4 @@
-﻿using SignalR.EntityLayer.Concretes;
+﻿using SignalR.Core.Concretes;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SignalR.EntityLayer.Entities

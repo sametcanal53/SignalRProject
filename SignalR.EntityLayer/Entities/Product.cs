@@ -1,4 +1,4 @@
-﻿using SignalR.EntityLayer.Concretes;
+﻿using SignalR.Core.Concretes;
 
 namespace SignalR.EntityLayer.Entities
 {
@@ -11,5 +11,6 @@ namespace SignalR.EntityLayer.Entities
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
+        public List<Basket> Baskets { get; set; }
     }
 }

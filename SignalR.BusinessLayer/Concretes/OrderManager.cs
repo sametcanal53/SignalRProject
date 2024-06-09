@@ -6,11 +6,11 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class OrderManager : GenericManager<Order>, IOrderService
     {
-        private readonly IOrderDal _dal;
-        public OrderManager(IOrderDal dal) : base(dal)
+        private readonly IOrderDal _orderDal;
+        public OrderManager(IOrderDal orderDal) : base(orderDal)
         {
-            _dal = dal;
+            _orderDal = orderDal;
         }
-        public decimal LastOrderPrice(bool? isActive) => _dal.LastOrderPrice(isActive);
+        public decimal LastOrderPrice(bool? isActive) => _orderDal.LastOrderPrice(isActive);
     }
 }

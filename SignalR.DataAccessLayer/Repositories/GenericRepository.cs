@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using SignalR.Core.Extensions;
 using SignalR.DataAccessLayer.Abstracts;
 using SignalR.DataAccessLayer.Concretes;
 
@@ -37,10 +37,8 @@ namespace SignalR.DataAccessLayer.Repositories
         public virtual int GetCount(bool? isActive)
         {
             var list = GetListAll();
-            return IsActiveConditions(list, isActive).Count();
+            return EnumerableExtensions.IsActiveConditions(list, isActive).Count();
         }
 
-        // Protected Methods
-        protected virtual IEnumerable<T> IsActiveConditions(IEnumerable<T> queryable, bool? isActive = default) => queryable.Where(q => !isActive.HasValue || q.GetType().GetProperty("State") == null ? true : q.GetType().GetProperty("State").GetValue(q).Equals(isActive.Value));
     }
 }

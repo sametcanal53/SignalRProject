@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstracts;
-using SignalR.DtoLayer.Concretes.Dtos.OrderDto;
+using SignalR.DtoLayer.Concretes.Dtos.Orders.Create;
+using SignalR.DtoLayer.Concretes.Dtos.Orders.Model;
+using SignalR.DtoLayer.Concretes.Dtos.Orders.Update;
 using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class OrdersController : GenericController<Order, ResultOrderDto, GetOrderDto, CreateOrderDto, UpdateOrderDto>
+    public class OrdersController : GenericController<Order, GetOrderDto, CreateOrderDto, UpdateOrderDto>
     {
         private readonly IOrderService _orderService;
         public OrdersController(IOrderService orderService, IMapper mapper) : base(orderService, mapper)

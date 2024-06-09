@@ -3,7 +3,8 @@ using SignalR.DataAccessLayer.Abstracts;
 
 namespace SignalR.BusinessLayer.Concretes
 {
-    public class GenericManager<T> : IGenericService<T> where T : class
+    public class GenericManager<T> : IGenericService<T>
+        where T : class
     {
         private readonly IGenericDal<T> _dal;
 

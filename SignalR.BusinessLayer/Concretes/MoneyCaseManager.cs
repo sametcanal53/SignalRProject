@@ -6,13 +6,13 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class MoneyCaseManager : GenericManager<MoneyCase>, IMoneyCaseService
     {
-        private readonly IMoneyCaseDal _dal;
-        public MoneyCaseManager(IMoneyCaseDal dal) : base(dal)
+        private readonly IMoneyCaseDal _moneyCaseDal;
+        public MoneyCaseManager(IMoneyCaseDal moneyCaseDal) : base(moneyCaseDal)
         {
-            _dal = dal;
+            _moneyCaseDal = moneyCaseDal;
         }
 
-        public decimal TotalMoneyCaseAmount(DateTime? date) => _dal.TotalMoneyCaseAmount(date);
+        public decimal TotalMoneyCaseAmount(DateTime? date) => _moneyCaseDal.TotalMoneyCaseAmount(date);
     }
 
 }

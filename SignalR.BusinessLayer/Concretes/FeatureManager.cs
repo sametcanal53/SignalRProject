@@ -7,9 +7,9 @@ namespace SignalR.BusinessLayer.Concretes
     public class FeatureManager : GenericManager<Feature>, IFeatureService
     {
         private readonly IFeatureDal _featureDal;
-        public FeatureManager(IFeatureDal dal) : base(dal)
+        public FeatureManager(IFeatureDal featureDal) : base(featureDal)
         {
-            _featureDal = dal;
+            _featureDal = featureDal;
         }
 
         public List<Feature> GetFeaturesWithFeatureDetails() => _featureDal.GetFeaturesWithFeatureDetails();

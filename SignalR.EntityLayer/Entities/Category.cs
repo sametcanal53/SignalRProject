@@ -1,4 +1,4 @@
-﻿using SignalR.EntityLayer.Concretes;
+﻿using SignalR.Core.Concretes;
 
 namespace SignalR.EntityLayer.Entities
 {

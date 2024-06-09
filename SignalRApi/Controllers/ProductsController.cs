@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstracts;
-using SignalR.DtoLayer.Concretes.Dtos.ProductDto;
+using SignalR.DtoLayer.Concretes.Dtos.Products.Create;
+using SignalR.DtoLayer.Concretes.Dtos.Products.Model;
+using SignalR.DtoLayer.Concretes.Dtos.Products.Update;
 using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Controllers
 {
-    public class ProductsController : GenericController<Product, ResultProductDto, GetProductDto, CreateProductDto, UpdateProductDto>
+    public class ProductsController : GenericController<Product, GetProductDto, CreateProductDto, UpdateProductDto>
     {
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
@@ -20,7 +22,7 @@ namespace SignalRApi.Controllers
         [HttpGet("GetProductListWithCategory")]
         public IActionResult GetProductListWithCategory()
         {
-            var result = _mapper.Map<List<ResultProductWithCategory>>(_productService.GetProductsWithCategories());
+            var result = _mapper.Map<List<GetProductWithCategoryDto>>(_productService.GetProductsWithCategories());
             return Ok(result);
         }
 

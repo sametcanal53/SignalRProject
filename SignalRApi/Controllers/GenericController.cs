@@ -11,10 +11,11 @@ namespace SignalRApi.Controllers
 
     }
 
-    public class GenericController<T, TGetListModel, TGetModel> : GenericController where T : class
+    public class GenericController<T, TModel> : GenericController
+        where T : class
     {
-        private readonly IGenericService<T> _service;
-        private readonly IMapper _mapper;
+        protected readonly IGenericService<T> _service;
+        protected readonly IMapper _mapper;
 
         public GenericController(IGenericService<T> service, IMapper mapper)
         {
@@ -23,60 +24,40 @@ namespace SignalRApi.Controllers
         }
 
         [HttpGet]
-        public virtual IActionResult GetAll()
-        {
-            var result = _mapper.Map<List<TGetListModel>>(_service.GetListAll());
-            return Ok(result);
-        }
+        public virtual IActionResult GetAll() => Ok(_mapper.Map<List<TModel>>(_service.GetListAll()));
 
         [HttpGet("{id}")]
-        public virtual IActionResult Get(int id)
-        {
-            var result = _mapper.Map<TGetModel>(_service.GetByID(id));
-            return Ok(result);
-        }
-    }
-
-    public class GenericController<T, TGetListModel, TGetModel, TCreateDto, TUpdateDto> : GenericController<T, TGetListModel, TGetModel>
-        where T : class
-        where TGetListModel : class
-        where TGetModel : class
-        where TCreateDto : class
-        where TUpdateDto : class
-    {
-        private readonly IGenericService<T> _service;
-        private readonly IMapper _mapper;
-
-        public GenericController(IGenericService<T> service, IMapper mapper) : base(service, mapper)
-        {
-            _service = service;
-            _mapper = mapper;
-        }
-
-        [HttpPost]
-        public virtual IActionResult Create(TCreateDto dto)
-        {
-            var result = _service.Add(_mapper.Map<T>(dto));
-            return Ok(result);
-        }
-
-        [HttpPatch]
-        public virtual IActionResult Update(TUpdateDto dto)
-        {
-            var result = _service.Update(_mapper.Map<T>(dto));
-            return Ok(result);
-        }
-
-        [HttpDelete("{id}")]
-        public virtual IActionResult Delete(int id)
-        {
-            var entity = _service.GetByID(id);
-            var result = _service.Delete(entity);
-            return Ok(result);
-        }
+        public virtual IActionResult Get(int id) => Ok(_mapper.Map<TModel>(_service.GetById(id)));
 
         [HttpGet("Count")]
         public virtual IActionResult GetCount([FromQuery] bool? isActive) => Ok(_service.GetCount(isActive));
 
+    }
+
+    public class GenericController<T, TModel, TCreateDto> : GenericController<T, TModel>
+        where T : class
+        where TModel : class
+        where TCreateDto : class
+    {
+        public GenericController(IGenericService<T> service, IMapper mapper) : base(service, mapper) { }
+
+        [HttpPost]
+        public virtual IActionResult Create(TCreateDto createDto) => Ok(_mapper.Map<TModel>(_service.Add(_mapper.Map<T>(createDto))));
+
+        [HttpDelete("{id}")]
+        public virtual IActionResult Delete(int id) => Ok(_mapper.Map<TModel>(_service.Delete(_service.GetById(id))));
+    }
+
+
+    public class GenericController<T, TModel, TCreateDto, TUpdateDto> : GenericController<T, TModel, TCreateDto>
+        where T : class
+        where TModel : class
+        where TCreateDto : class
+        where TUpdateDto : class
+    {
+        public GenericController(IGenericService<T> service, IMapper mapper) : base(service, mapper) { }
+
+        [HttpPatch]
+        public virtual IActionResult Update(TUpdateDto updateDto) => Ok(_mapper.Map<TModel>(_service.Update(_mapper.Map<T>(updateDto))));
     }
 }

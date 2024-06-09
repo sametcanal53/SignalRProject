@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
-using SignalR.DtoLayer.Concretes.Dtos.ContactDto;
+using SignalR.DtoLayer.Concretes.Dtos.Contacts.Create;
+using SignalR.DtoLayer.Concretes.Dtos.Contacts.Model;
+using SignalR.DtoLayer.Concretes.Dtos.Contacts.Update;
 using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Mapping
@@ -8,11 +10,10 @@ namespace SignalRApi.Mapping
     {
         public ContactMapping()
         {
-            CreateMap<Contact, ResultContactDto>().ReverseMap();
             CreateMap<Contact, GetContactDto>().ReverseMap();
             CreateMap<Contact, CreateContactDto>().ReverseMap();
             CreateMap<Contact, UpdateContactDto>().ReverseMap();
-            CreateMap<Contact, ResultContactWithSocialMediaDto>().ReverseMap();
+            CreateMap<Contact, GetContactWithSocialMediasDto>().ReverseMap();
         }
     }
 }

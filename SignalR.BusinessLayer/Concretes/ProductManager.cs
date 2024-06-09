@@ -6,18 +6,18 @@ namespace SignalR.BusinessLayer.Concretes
 {
     public class ProductManager : GenericManager<Product>, IProductService
     {
-        private readonly IProductDal _dal;
+        private readonly IProductDal _productDal;
 
-        public ProductManager(IProductDal dal) : base(dal)
+        public ProductManager(IProductDal productDal) : base(productDal)
         {
-            _dal = dal;
+            _productDal = productDal;
         }
 
-        public List<Product> GetProductsWithCategories() => _dal.GetProductsWithCategories();
-        public int ProductCountByCategoryName(string categoryName) => _dal.ProductCountByCategoryName(categoryName);
-        public decimal ProductPriceAvg(int? categoryId) => _dal.ProductPriceAvg(categoryId);
-        public string ProductNameByMaxPrice(int? categoryId) => _dal.ProductNameByMaxPrice(categoryId);
-        public string ProductNameByMinPrice(int? categoryId) => _dal.ProductNameByMinPrice(categoryId);
+        public List<Product> GetProductsWithCategories() => _productDal.GetProductsWithCategories();
+        public int ProductCountByCategoryName(string categoryName) => _productDal.ProductCountByCategoryName(categoryName);
+        public decimal ProductPriceAvg(int? categoryId) => _productDal.ProductPriceAvg(categoryId);
+        public string ProductNameByMaxPrice(int? categoryId) => _productDal.ProductNameByMaxPrice(categoryId);
+        public string ProductNameByMinPrice(int? categoryId) => _productDal.ProductNameByMinPrice(categoryId);
 
     }
 }
