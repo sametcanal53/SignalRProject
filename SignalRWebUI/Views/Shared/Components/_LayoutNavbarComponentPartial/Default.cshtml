@@ -1,4 +1,66 @@
-﻿<div class="main-header">
+﻿
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(() => {
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:5353/SignalRHub").build();
+        connection.start().then(() => {
+            setInterval(() => {
+                connection.invoke("SendNotifications");
+            }, 5000);
+        }).catch((err) => { console.log(err) });
+
+        // Revize edilecek
+        var enumNotificationTypes = {};
+
+        $.ajax({
+            url: '/Enum/GetEnumValues/',
+            type: 'GET',
+            data: { enumType: 'EnumNotificationType' },
+            contentType: 'application/json',
+            success: function (response) {
+                enumNotificationTypes = response;
+            }
+        });
+
+
+
+        connection.on("ReceiveUnreadNotifications", (result) => {
+            console.log(enumNotificationTypes);
+
+            var enumIconKeys = {
+                1: "la-heart",
+                2: "la-star",
+                3: "la-bell",
+                4: "la-flag"
+            };
+
+            $("#notifications").empty();
+            for (var i = 0; i < result.length; i++) {
+                $("#notifications").append(`<a href="#">
+                            <div class="notif-icon ${enumNotificationKeys[result[i].type]}"> <i class="la ${enumIconKeys[result[i].icon]}"></i> </div>
+                            <div class="notif-content">
+                                <span class="block">
+                                    ${result[i].description}
+                                    <span class="time">${result[i].date}</span>
+                            </div>
+                        </a>`);
+            }
+        });
+
+        connection.on("ReceiveUnreadNotificationsCount", (result) => {
+            $("#unreadNotificationsCount").text(result);
+        });
+    })
+</script>
+
+<div class="main-header">
     <div class="logo-header">
         <a href="index.html" class="logo">
             SignalR Admin
@@ -36,52 +98,15 @@
                 <li class="nav-item dropdown hidden-caret">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="la la-bell"></i>
-                        <span class="notification">3</span>
+                        <span class="notification" id="unreadNotificationsCount"></span>
                     </a>
                     <ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
                         <li>
-                            <div class="dropdown-title">4 yeni bildirim var!</div>
+                            <div class="dropdown-title">Yeni bildirim var!</div>
                         </li>
                         <li>
                             <div class="notif-center">
-                                <a href="#">
-                                    <div class="notif-icon notif-primary"> <i class="la la-user-plus"></i> </div>
-                                    <div class="notif-content">
-                                        <span class="block">
-                                            New user registered
-                                        </span>
-                                        <span class="time">5 minutes ago</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
-                                    <div class="notif-content">
-                                        <span class="block">
-                                            Rahmad commented on Admin
-                                        </span>
-                                        <span class="time">12 minutes ago</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="notif-img">
-                                        <img src="assets/img/profile2.jpg" alt="Img Profile">
-                                    </div>
-                                    <div class="notif-content">
-                                        <span class="block">
-                                            Reza send messages to you
-                                        </span>
-                                        <span class="time">12 minutes ago</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div>
-                                    <div class="notif-content">
-                                        <span class="block">
-                                            Farrah liked Admin
-                                        </span>
-                                        <span class="time">17 minutes ago</span>
-                                    </div>
-                                </a>
+                                <div id="notifications"></div>
                             </div>
                         </li>
                         <li>

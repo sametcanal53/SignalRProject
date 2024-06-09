@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using SignalR.BusinessLayer.Abstracts;
+using SignalR.Core.Enums;
 using SignalR.DataAccessLayer.Concretes;
 
 namespace SignalRApi.Hubs
@@ -11,19 +12,25 @@ namespace SignalRApi.Hubs
         private readonly IOrderService _orderService;
         private readonly IMoneyCaseService _moneyCaseService;
         private readonly IMenuTableService _menuTableService;
+        private readonly IBookingService _bookingService;
+        private readonly INotificationService _notificationService;
 
         public SignalRHub(
             ICategoryService categoryService,
             IProductService productService,
             IOrderService orderService,
             IMoneyCaseService moneyCaseService,
-            IMenuTableService menuTableService)
+            IMenuTableService menuTableService,
+            IBookingService bookingService,
+            INotificationService notificationService)
         {
             _categoryService = categoryService;
             _productService = productService;
             _orderService = orderService;
             _moneyCaseService = moneyCaseService;
             _menuTableService = menuTableService;
+            _bookingService = bookingService;
+            _notificationService = notificationService;
         }
 
         public async Task SendStatistics()
@@ -51,7 +58,17 @@ namespace SignalRApi.Hubs
             await Clients.All.SendAsync("ReceiveTotalMoneyCaseAmount", _moneyCaseService.TotalMoneyCaseAmount().ToString("0.00") + "₺");
             await Clients.All.SendAsync("ReceiveActiveTotalOrderCount", _orderService.GetCount(true));
             await Clients.All.SendAsync("ReceiveMenuTableCount", _menuTableService.GetCount());
+        }
 
+        public async Task GetBookings()
+        {
+            await Clients.All.SendAsync("ReceiveBookings", _bookingService.GetList());
+        }
+
+        public async Task SendNotifications()
+        {
+            await Clients.All.SendAsync("ReceiveUnreadNotifications", _notificationService.GetNotifications(false));
+            await Clients.All.SendAsync("ReceiveUnreadNotificationsCount", _notificationService.GetNotificationsCount(false));
         }
     }
 }
