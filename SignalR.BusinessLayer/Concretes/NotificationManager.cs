@@ -14,5 +14,6 @@ namespace SignalR.BusinessLayer.Concretes
 
         public List<Notification> GetNotifications(bool? isRead) => _notificationDal.GetNotifications(isRead);
         public int GetNotificationsCount(bool? isRead) => _notificationDal.GetNotificationsCount(isRead);
+        public bool NotificationStatusChange(int id, bool? isRead) => _notificationDal.NotificationStatusChange(id, isRead);
     }
 }

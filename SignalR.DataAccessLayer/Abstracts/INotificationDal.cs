@@ -6,5 +6,6 @@ namespace SignalR.DataAccessLayer.Abstracts
     {
         List<Notification> GetNotifications(bool? isRead);
         int GetNotificationsCount(bool? isRead);
+        bool NotificationStatusChange(int id, bool? isRead);
     }
 }

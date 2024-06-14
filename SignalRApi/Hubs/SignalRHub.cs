@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.SignalR;
 using SignalR.BusinessLayer.Abstracts;
-using SignalR.Core.Enums;
-using SignalR.DataAccessLayer.Concretes;
+using SignalR.DtoLayer.Concretes.Dtos.MenuTables;
 
 namespace SignalRApi.Hubs
 {
     public class SignalRHub : Hub
     {
+        private readonly IMapper _mapper;
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
@@ -16,6 +17,7 @@ namespace SignalRApi.Hubs
         private readonly INotificationService _notificationService;
 
         public SignalRHub(
+            IMapper mapper,
             ICategoryService categoryService,
             IProductService productService,
             IOrderService orderService,
@@ -24,6 +26,7 @@ namespace SignalRApi.Hubs
             IBookingService bookingService,
             INotificationService notificationService)
         {
+            _mapper = mapper;
             _categoryService = categoryService;
             _productService = productService;
             _orderService = orderService;
@@ -32,7 +35,7 @@ namespace SignalRApi.Hubs
             _bookingService = bookingService;
             _notificationService = notificationService;
         }
-
+        public static int clientCount = 0;
         public async Task SendStatistics()
         {
             await Clients.All.SendAsync("ReceiveCategoryCount", _categoryService.GetCount());
@@ -69,6 +72,30 @@ namespace SignalRApi.Hubs
         {
             await Clients.All.SendAsync("ReceiveUnreadNotifications", _notificationService.GetNotifications(false));
             await Clients.All.SendAsync("ReceiveUnreadNotificationsCount", _notificationService.GetNotificationsCount(false));
+        }
+
+        public async Task GetMenuTableStatus()
+        {
+            await Clients.All.SendAsync("ReceiveMenuTableStatus", _mapper.Map<List<MenuTableDto>>(_menuTableService.GetList()));
+        }
+
+        public async Task SendMessage(string user, string message)
+        {
+            await Clients.All.SendAsync("ReceiveMessage", user, message);
+        }
+
+        public override async Task OnConnectedAsync()
+        {
+            clientCount++;
+            await Clients.All.SendAsync("ReceiveClientCount", clientCount);
+            await base.OnConnectedAsync();
+        }
+
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+            clientCount--;
+            await Clients.All.SendAsync("ReceiveClientCount", clientCount);
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }

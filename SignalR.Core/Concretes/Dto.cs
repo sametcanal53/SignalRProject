@@ -1,4 +1,5 @@
 ﻿using SignalR.Core.Abstracts;
+using System.Text.Json.Serialization;
 
 namespace SignalR.Core.Concretes
 {

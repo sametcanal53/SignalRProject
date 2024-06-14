@@ -1,0 +1,75 @@
+﻿@model List<GetMenuTableDto>
+@{
+    ViewData["Title"] = "GetTablesByStatus";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(() => {
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:5353/SignalRHub").build();
+        connection.start().then(() => {
+            setInterval(() => {
+                connection.invoke("GetMenuTableStatus");
+            }, 1000);
+        }).catch((err) => { console.log(err) });
+
+        var enumMenuTableStatus;
+        $.ajax({
+            url: 'https://localhost:5353/api/Enum/GetEnumValues',
+            type: 'GET',
+            data: { enumTypeName: 'EnumMenuTableStatus' },
+            contentType: 'application/json',
+            success: function (response) {
+                enumMenuTableStatus = response;
+            }
+        });
+
+
+        connection.on("ReceiveMenuTableStatus", (result) => {
+            var enumKeys = Object.keys(enumMenuTableStatus);
+            let tables = `<div class="row">`;
+            $.each(result, (index, item) => {
+                let statusClass = enumKeys.find(x => x == item.status) == 0 ? "card-success" : "card-danger";
+                let statusText = enumKeys.find(x => x == item.status) == 0 ? "Masa Boş" : "Masa Dolu";
+                tables += `
+                    <div class="col-md-3">
+                        <div class="card card-stats ${statusClass}">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center">
+                                            <i class="la la-certificate"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-category">${item.name}</p>
+                                            <h4 class="card-title">${statusText}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            tables += `</div>`;
+            $("#menuTableStatus").html(tables);
+
+        });
+    })
+</script>
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Anlık Masa Durumları Sayfası</h4>
+        <div id="menuTableStatus"></div>
+    </div>
+</div>

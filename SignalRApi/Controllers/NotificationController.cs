@@ -21,5 +21,8 @@ namespace SignalRApi.Controllers
 
         [HttpGet("GetNotificationsCount")]
         public IActionResult GetNotificationsCount(bool? isRead) => Ok(_notificationService.GetNotificationsCount(isRead));
+
+        [HttpGet("NotificationStatusChange/{id}/{isRead?}")]
+        public IActionResult NotificationStatusChange(int id, bool? isRead) => Ok(_notificationService.NotificationStatusChange(id, isRead));
     }
 }

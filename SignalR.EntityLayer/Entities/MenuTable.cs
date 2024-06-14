@@ -1,5 +1,5 @@
 ﻿using SignalR.Core.Concretes;
-using SignalR.Enums;
+using SignalR.Core.Enums;
 
 namespace SignalR.EntityLayer.Entities
 {

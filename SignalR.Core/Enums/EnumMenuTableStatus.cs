@@ -1,8 +1,8 @@
-﻿namespace SignalR.Enums
+﻿namespace SignalR.Core.Enums
 {
     public enum EnumMenuTableStatus : byte
     {
-        Available = 1,
-        NotAvailable = 2
+        NotAvailable = 0,
+        Available = 1
     }
 }

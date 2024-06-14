@@ -16,13 +16,12 @@
             }, 5000);
         }).catch((err) => { console.log(err) });
 
-        // Revize edilecek
-        var enumNotificationTypes = {};
 
+        var enumNotificationTypes;
         $.ajax({
-            url: '/Enum/GetEnumValues/',
+            url: 'https://localhost:5353/api/Enum/GetEnumValues',
             type: 'GET',
-            data: { enumType: 'EnumNotificationType' },
+            data: { enumTypeName: 'EnumNotificationType' },
             contentType: 'application/json',
             success: function (response) {
                 enumNotificationTypes = response;
@@ -30,27 +29,27 @@
         });
 
 
+        var enumIcons;
+        $.ajax({
+            url: 'https://localhost:5353/api/Enum/GetEnumValues',
+            type: 'GET',
+            data: { enumTypeName: 'EnumIcon' },
+            contentType: 'application/json',
+            success: function (response) {
+                enumIcons = response;
+            }
+        });
 
         connection.on("ReceiveUnreadNotifications", (result) => {
-            console.log(enumNotificationTypes);
-
-            var enumIconKeys = {
-                1: "la-heart",
-                2: "la-star",
-                3: "la-bell",
-                4: "la-flag"
-            };
-
             $("#notifications").empty();
             for (var i = 0; i < result.length; i++) {
                 $("#notifications").append(`<a href="#">
-                            <div class="notif-icon ${enumNotificationKeys[result[i].type]}"> <i class="la ${enumIconKeys[result[i].icon]}"></i> </div>
-                            <div class="notif-content">
-                                <span class="block">
-                                    ${result[i].description}
-                                    <span class="time">${result[i].date}</span>
-                            </div>
-                        </a>`);
+                                            <div class="notif-icon ${enumNotificationTypes[result[i].type]}"> <i class="la ${enumIcons[result[i].icon]}"></i> </div>
+                                            <div class="notif-content">
+                                                <span class="block">${result[i].description}</span>
+                                                <span class="time">${result[i].date}</span>
+                                            </div>
+                                        </a>`);
             }
         });
 
