@@ -15,7 +15,7 @@ namespace SignalR.DataAccessLayer.EntityFramework
 
         public int GetNotificationsCount(bool? isRead) => GetNotifications(isRead).Count;
 
-        public bool NotificationStatusChange(int id, bool? isRead)
+        public bool ChangeNotificationStatus(int id, bool? isRead)
         {
             var notification = GetById(id);
             notification.IsRead = isRead ?? !notification.IsRead;

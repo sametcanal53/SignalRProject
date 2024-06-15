@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace SignalR.DataAccessLayer.Abstracts
+﻿namespace SignalR.DataAccessLayer.Abstracts
 {
     public interface IGenericDal<T> where T : class
     {
@@ -8,7 +6,8 @@ namespace SignalR.DataAccessLayer.Abstracts
         T Update(T entity);
         T Delete(T entity);
         T GetById(int id);
-        List<T> GetList();
+        List<T> GetList(bool? includedPassive);
         int GetCount(bool? isActive);
+        T ChangeState(int id, bool? state);
     }
 }

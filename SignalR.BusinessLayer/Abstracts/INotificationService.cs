@@ -6,6 +6,6 @@ namespace SignalR.BusinessLayer.Abstracts
     {
         List<Notification> GetNotifications(bool? isRead);
         int GetNotificationsCount(bool? isRead);
-        bool NotificationStatusChange(int id, bool? isRead);
+        bool ChangeNotificationStatus(int id, bool? isRead);
     }
 }
