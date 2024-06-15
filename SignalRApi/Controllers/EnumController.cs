@@ -24,7 +24,7 @@ namespace SignalRApi.Controllers
 
         private Type GetEnumType(string enumTypeName)
         {
-            string namespaceName = "SignalR.Core.Enums"; // Değiştirilmesi gereken namespace
+            string namespaceName = "SignalR.Core.Enums";
 
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in assemblies)

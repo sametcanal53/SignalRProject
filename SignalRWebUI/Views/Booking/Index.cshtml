@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
-    int count = 0;
 }
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -21,6 +20,17 @@
             }, 1000);
         }).catch((err) => { console.log(err) });
 
+        var enumBookingStatus;
+        $.ajax({
+            url: 'https://localhost:5353/api/Enum/GetEnumValues',
+            type: 'GET',
+            data: { enumTypeName: 'EnumBookingStatus' },
+            contentType: 'application/json',
+            success: function (response) {
+                enumBookingStatus = response;
+            }
+        });
+
         connection.on("ReceiveBookings", (result) => {
             let table = `<table class="table mt-3">
                                 <thead>
@@ -34,21 +44,26 @@
                                         <th scope="col">Durum</th>
                                         <th scope="col">Sil</th>
                                         <th scope="col">Güncelle</th>
+                                        <th scope="col">Onayla</th>
+                                        <th scope="col">İptal Et</th>
                                     </tr>
                                 </thead>`;
 
             $.each(result, (index, item) => {
                 table += `
                                 <tr>
-                                    <td>${index + 1}</td>
+                                    <th>${index + 1}</th>
                                     <td>${item.name}</td>
                                     <td>${item.email}</td>
                                     <td>${item.phone}</td>
                                     <td>${item.personCount}</td>
-                                    <td>Rezervasyon Alındı</td>
-                                    <td>${item.state}</td>
+                                    <td>${enumBookingStatus[item.status]}</td>
+                                    <td><a href="/Booking/ChangeState/${item.id}" class="btn btn- btn-border btn-round">${item.state ? "Aktif" : "Pasif"}</a></td>
                                     <td><a href="/Booking/Delete/${item.id}" class="btn btn-danger btn-border btn-round">Sil</a></td>
                                     <td><a href="/Booking/Update/${item.id}" class="btn btn-success btn-border btn-round">Güncelle</a></td>
+                                    <td><a href="/Booking/BookingStatusApproved/${item.id}" class="btn btn-info btn-border btn-round">Onayla</a></td>
+                                    <td><a href="/Booking/BookingStatusRejected/${item.id}" class="btn btn-warning btn-border btn-round">İptal Et</a></td>
+
                                 </tr>`;
             });
 

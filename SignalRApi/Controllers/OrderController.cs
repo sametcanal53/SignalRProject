@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstracts;
+using SignalR.DtoLayer.Concretes.Dtos.Orders.ControllerRequest;
 using SignalR.DtoLayer.Concretes.Dtos.Orders.Create;
 using SignalR.DtoLayer.Concretes.Dtos.Orders.Model;
 using SignalR.DtoLayer.Concretes.Dtos.Orders.Update;
@@ -17,6 +18,6 @@ namespace SignalRApi.Controllers
         }
 
         [HttpGet("LastOrderPrice")]
-        public IActionResult LastOrderPrice(bool? isActive) => Ok(_orderService.LastOrderPrice(isActive));
+        public IActionResult LastOrderPrice(LastOrderPriceRequest request) => Ok(_orderService.LastOrderPrice(request.IsActive));
     }
 }

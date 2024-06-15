@@ -39,22 +39,14 @@ namespace SignalRWebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var content = new StringContent(JsonConvert.SerializeObject(createDto), Encoding.UTF8, "application/json");
             var response = await client.PostAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}", content);
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
-            return View();
+            return response.IsSuccessStatusCode ? RedirectToAction("Index") : View();
         }
 
         public virtual async Task<IActionResult> Delete(int id)
         {
             var client = _httpClientFactory.CreateClient();
             var response = await client.DeleteAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/{id}");
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
-            return View();
+            return response.IsSuccessStatusCode ? RedirectToAction("Index") : View();
         }
 
         [HttpGet]
@@ -82,6 +74,14 @@ namespace SignalRWebUI.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        public virtual async Task<IActionResult> ChangeState(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var content = new StringContent(JsonConvert.SerializeObject(new { Id = id }), Encoding.UTF8, "application/json");
+            var response = await client.PatchAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/ChangeState", content);
+            return response.IsSuccessStatusCode ? RedirectToAction("Index") : View();
         }
     }
 }

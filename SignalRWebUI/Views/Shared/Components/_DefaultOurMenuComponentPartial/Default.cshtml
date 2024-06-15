@@ -1,7 +1,4 @@
 ﻿@model List<GetProductDto>
-@{
-    int index = 0;
-}
 <section class="food_section layout_padding-bottom">
     <div class="container">
         <div class="heading_container heading_center">
@@ -22,7 +19,6 @@
             <div class="row grid">
                 @foreach (var item in Model)
                 {
-                    if (index == 8) return;
                     <div class="col-sm-6 col-lg-4 all @item.Category.Name.ToString()">
                         <div class="box">
                             <div>
@@ -99,7 +95,6 @@
                             </div>
                         </div>
                     </div>
-                    index++;
                 }
 
             </div>

@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using SignalRWebUI.Dtos.Users;
 using SignalRWebUI.Dtos.Users.Create;
 using System.Text;
 
 namespace SignalRWebUI.Controllers
 {
+    [AllowAnonymous]
     public class UserController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -27,7 +30,26 @@ namespace SignalRWebUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 Thread.Sleep(3000);
-                return RedirectToAction("Register");
+                return RedirectToAction("Login");
+            }
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginDto loginDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var content = new StringContent(JsonConvert.SerializeObject(loginDto), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/Login", content);
+            if (response.IsSuccessStatusCode)
+            {
+                Thread.Sleep(3000);
+                return RedirectToAction("Index", "Category");
             }
             return View();
         }

@@ -65,7 +65,7 @@ namespace SignalRApi.Hubs
 
         public async Task GetBookings()
         {
-            await Clients.All.SendAsync("ReceiveBookings", _bookingService.GetList());
+            await Clients.All.SendAsync("ReceiveBookings", _bookingService.GetList(default));
         }
 
         public async Task SendNotifications()
@@ -76,7 +76,7 @@ namespace SignalRApi.Hubs
 
         public async Task GetMenuTableStatus()
         {
-            await Clients.All.SendAsync("ReceiveMenuTableStatus", _mapper.Map<List<MenuTableDto>>(_menuTableService.GetList()));
+            await Clients.All.SendAsync("ReceiveMenuTableStatus", _mapper.Map<List<MenuTableDto>>(_menuTableService.GetList(default)));
         }
 
         public async Task SendMessage(string user, string message)

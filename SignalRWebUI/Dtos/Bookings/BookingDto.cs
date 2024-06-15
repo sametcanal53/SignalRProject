@@ -1,4 +1,5 @@
 ﻿using SignalR.Core.Concretes;
+using SignalR.Core.Enums;
 
 namespace SignalRWebUI.Dtos.Bookings
 {
@@ -9,5 +10,6 @@ namespace SignalRWebUI.Dtos.Bookings
         public string Phone { get; set; }
         public int PersonCount { get; set; }
         public DateTime Date { get; set; }
+        public EnumBookingStatus Status { get; set; } = EnumBookingStatus.Pending;
     }
 }

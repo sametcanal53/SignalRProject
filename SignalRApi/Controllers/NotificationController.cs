@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstracts;
+using SignalR.DtoLayer.Concretes.Dtos.Notifications.ControllerRequest;
 using SignalR.DtoLayer.Concretes.Dtos.Notifications.Create;
 using SignalR.DtoLayer.Concretes.Dtos.Notifications.Model;
 using SignalR.DtoLayer.Concretes.Dtos.Notifications.Update;
@@ -11,18 +12,20 @@ namespace SignalRApi.Controllers
     public class NotificationController : GenericController<Notification, GetNotificationDto, CreateNotificationDto, UpdateNotificationDto>
     {
         private readonly INotificationService _notificationService;
+        private readonly IMapper _mapper;
         public NotificationController(INotificationService notificationService, IMapper mapper) : base(notificationService, mapper)
         {
             _notificationService = notificationService;
+            _mapper = mapper;
         }
 
-        [HttpGet("GetNotifications")]
-        public IActionResult GetNotifications(bool? isRead) => Ok(_mapper.Map<List<GetNotificationDto>>(_notificationService.GetNotifications(isRead)));
+        [HttpPost("GetNotifications")]
+        public IActionResult GetNotifications(GetNotificationsRequest request) => Ok(_mapper.Map<List<GetNotificationDto>>(_notificationService.GetNotifications(request.IsRead)));
 
-        [HttpGet("GetNotificationsCount")]
-        public IActionResult GetNotificationsCount(bool? isRead) => Ok(_notificationService.GetNotificationsCount(isRead));
+        [HttpPost("GetNotificationsCount")]
+        public IActionResult GetNotificationsCount(GetNotificationsCountRequest request) => Ok(_notificationService.GetNotificationsCount(request.IsRead));
 
-        [HttpGet("NotificationStatusChange/{id}/{isRead?}")]
-        public IActionResult NotificationStatusChange(int id, bool? isRead) => Ok(_notificationService.NotificationStatusChange(id, isRead));
+        [HttpPost("ChangeNotificationStatus")]
+        public IActionResult ChangeNotificationStatus(ChangeNotificationStatusRequest request) => Ok(_notificationService.ChangeNotificationStatus(request.Id, request.IsRead));
     }
 }

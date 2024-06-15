@@ -44,7 +44,7 @@
                             @foreach (var socialMedia in item.SocialMedias)
                             {
                                 <a href="@socialMedia.Url">
-                                    <i class="fa fa-@socialMedia.Title.ToLowerInvariant()" aria-hidden="true"></i>
+                                    <i class="fa @socialMedia.Icon" aria-hidden="true"></i>
                                 </a>
                             }
                         </div>

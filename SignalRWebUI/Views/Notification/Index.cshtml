@@ -35,13 +35,13 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.Id</td>
+                                        <th>@(Model.IndexOf(item) + 1)</th>
                                         <td>@item.Type</td>
                                         <td>@item.Icon</td>
                                         <td>@item.Date</td>
                                         <td>@item.Description</td>
-                                        <td><a href="/Notification/NotificationStatusChange/@item.Id" class="btn btn-warning btn-border btn-round">@(item.IsRead ? "Okundu" : "Okunmadı")</a></td>
-                                        <td>@item.State</td>
+                                        <td><a href="/Notification/ChangeNotificationStatus/@item.Id" class="btn btn-warning btn-border btn-round">@(item.IsRead ? "Okundu" : "Okunmadı")</a></td>
+                                        <td><a href="/Notification/ChangeState/@item.Id" class="btn btn-warning btn-border btn-round">@(item.State ? "Aktif" : "Pasif")</a></td>
                                         <td><a href="/Notification/Delete/@item.Id" class="btn btn-danger btn-border btn-round">Sil</a></td>
                                         <td><a href="/Notification/Update/@item.Id" class="btn btn-success btn-border btn-round">Güncelle</a></td>
                                     </tr>

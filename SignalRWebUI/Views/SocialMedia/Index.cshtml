@@ -23,8 +23,9 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Başlık</th>
                                     <th scope="col">Link</th>
-                                    <th scope="col">Durum</th>
+                                    <th scope="col">Ikon</th>
                                     <th scope="col">İletişim</th>
+                                    <th scope="col">Durum</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
                                 </tr>
@@ -33,11 +34,12 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.Id</td>
+                                        <th>@(Model.IndexOf(item) + 1)</th>
                                         <td>@item.Title</td>
                                         <td>@item.Url</td>
+                                        <td>@item.Icon</td>
                                         <td>@item.Contact.FooterTitle</td>
-                                        <td>@item.State</td>
+                                        <td><a href="/SocialMedia/ChangeState/@item.Id" class="btn btn-warning btn-border btn-round">@(item.State ? "Aktif" : "Pasif")</a></td>
                                         <td><a href="/SocialMedia/Delete/@item.Id" class="btn btn-danger btn-border btn-round">Sil</a></td>
                                         <td><a href="/SocialMedia/Update/@item.Id" class="btn btn-success btn-border btn-round">Güncelle</a></td>
                                     </tr>

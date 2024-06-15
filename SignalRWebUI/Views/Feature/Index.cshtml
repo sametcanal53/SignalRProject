@@ -31,9 +31,9 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.Id</td>
+                                        <th>@(Model.IndexOf(item) + 1)</th>
                                         <td>@item.Name</td>
-                                        <td>@item.State</td>
+                                        <td><a href="/Feature/ChangeState/@item.Id" class="btn btn-warning btn-border btn-round">@(item.State ? "Aktif" : "Pasif")</a></td>
                                         <td><a href="/Feature/Delete/@item.Id" class="btn btn-danger btn-border btn-round">Sil</a></td>
                                         <td><a href="/Feature/Update/@item.Id" class="btn btn-success btn-border btn-round">Güncelle</a></td>
                                     </tr>

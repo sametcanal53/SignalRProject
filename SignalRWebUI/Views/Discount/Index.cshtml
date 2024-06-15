@@ -15,7 +15,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-sub">
-                            Günün indirimleri ürünleri aşağıda yer almaktadır. Tema bütünlüğü için sadece 2 tane indirimli ürün seçiniz
+                            Günün indirimleri ürünleri aşağıda yer almaktadır. Tema bütünlüğü için sadece <strong>2 adet </strong>indirimli ürün seçiniz
                         </div>
                         <table class="table mt-3">
                             <thead>
@@ -33,11 +33,11 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.Id</td>
+                                        <th>@(Model.IndexOf(item) + 1)</th>
                                         <td>@item.Title</td>
                                         <td>@item.Description</td>
                                         <td>@item.Amount</td>
-                                        <td>@item.State</td>
+                                        <td><a href="/Discount/ChangeState/@item.Id" class="btn btn-warning btn-border btn-round">@(item.State ? "Aktif" : "Pasif")</a></td>
                                         <td><a href="/Discount/Delete/@item.Id" class="btn btn-danger btn-border btn-round">Sil</a></td>
                                         <td><a href="/Discount/Update/@item.Id" class="btn btn-success btn-border btn-round">Güncelle</a></td>
                                     </tr>

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstracts;
 using SignalR.DtoLayer.Concretes.Dtos.SocialMedias.Create;
 using SignalR.DtoLayer.Concretes.Dtos.SocialMedias.Model;

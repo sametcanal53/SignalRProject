@@ -15,7 +15,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-sub">
-                            İletişim ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz. Tema bütünlüğü için sadece 1 tane hakkımızda alanı oluşturmayı unutmayınız
+                            İletişim ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz. Tema bütünlüğü için sadece <strong>1 tane</strong> hakkımızda alanı oluşturmayı unutmayınız
                         </div>
                         <table class="table mt-3">
                             <thead>
@@ -38,7 +38,7 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.Id</td>
+                                        <th>@(Model.IndexOf(item) + 1)</th>
                                         <td>@item.Location</td>
                                         <td>@item.Email</td>
                                         <td>@item.Phone</td>
@@ -47,7 +47,7 @@
                                         <td>@item.OpenDays</td>
                                         <td>@item.OpenDaysDescription</td>
                                         <td>@item.OpenHours</td>
-                                        <td>@item.State</td>
+                                        <td><a href="/Contact/ChangeState/@item.Id" class="btn btn-warning btn-border btn-round">@(item.State ? "Aktif" : "Pasif")</a></td>
                                         <td><a href="/Contact/Delete/@item.Id" class="btn btn-danger btn-border btn-round">Sil</a></td>
                                         <td><a href="/Contact/Update/@item.Id" class="btn btn-success btn-border btn-round">Güncelle</a></td>
                                     </tr>

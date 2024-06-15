@@ -17,10 +17,10 @@ namespace SignalRWebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> NotificationStatusChange(int id, bool? isRead = default)
+        public async Task<IActionResult> ChangeNotificationStatus(int id, bool? isRead = default)
         {
             var client = _httpClientFactory.CreateClient();
-            var x = await client.GetAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/NotificationStatusChange/{id}/{isRead}");
+            var x = await client.GetAsync($"https://localhost:5353/api/{ControllerContext.ActionDescriptor.ControllerName}/ChangeNotificationStatus/{id}/{isRead}");
             return RedirectToAction("Index");
         }
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstracts;
+using SignalR.DtoLayer.Concretes.Dtos.BaseControllerRequest;
 
 namespace SignalRApi.Controllers
 {
@@ -14,8 +15,8 @@ namespace SignalRApi.Controllers
     public class GenericController<T, TModel> : GenericController
         where T : class
     {
-        protected readonly IGenericService<T> _service;
-        protected readonly IMapper _mapper;
+        private readonly IGenericService<T> _service;
+        private readonly IMapper _mapper;
 
         public GenericController(IGenericService<T> service, IMapper mapper)
         {
@@ -24,13 +25,16 @@ namespace SignalRApi.Controllers
         }
 
         [HttpGet]
-        public virtual IActionResult GetList() => Ok(_mapper.Map<List<TModel>>(_service.GetList()));
+        public virtual IActionResult GetList(bool? includedPassive = false) => Ok(_mapper.Map<List<TModel>>(_service.GetList(includedPassive)));
 
         [HttpGet("{id}")]
         public virtual IActionResult Get(int id) => Ok(_mapper.Map<TModel>(_service.GetById(id)));
 
         [HttpGet("Count")]
-        public virtual IActionResult GetCount([FromQuery] bool? isActive) => Ok(_service.GetCount(isActive));
+        public virtual IActionResult GetCount(bool? isActive) => Ok(_service.GetCount(isActive));
+
+        [HttpPatch("ChangeState")]
+        public virtual IActionResult ChangeState(ChangeStateDtoRequest request) => Ok(_mapper.Map<TModel>(_service.ChangeState(request.Id, request.State)));
 
     }
 
@@ -39,7 +43,14 @@ namespace SignalRApi.Controllers
         where TModel : class
         where TCreateDto : class
     {
-        public GenericController(IGenericService<T> service, IMapper mapper) : base(service, mapper) { }
+        private readonly IGenericService<T> _service;
+        private readonly IMapper _mapper;
+
+        public GenericController(IGenericService<T> service, IMapper mapper) : base(service, mapper)
+        {
+            _service = service;
+            _mapper = mapper;
+        }
 
         [HttpPost]
         public virtual IActionResult Create(TCreateDto createDto) => Ok(_mapper.Map<TModel>(_service.Add(_mapper.Map<T>(createDto))));
@@ -55,7 +66,14 @@ namespace SignalRApi.Controllers
         where TCreateDto : class
         where TUpdateDto : class
     {
-        public GenericController(IGenericService<T> service, IMapper mapper) : base(service, mapper) { }
+        private readonly IGenericService<T> _service;
+        private readonly IMapper _mapper;
+
+        public GenericController(IGenericService<T> service, IMapper mapper) : base(service, mapper)
+        {
+            _service = service;
+            _mapper = mapper;
+        }
 
         [HttpPatch]
         public virtual IActionResult Update(TUpdateDto updateDto) => Ok(_mapper.Map<TModel>(_service.Update(_mapper.Map<T>(updateDto))));
