@@ -1,0 +1,49 @@
+﻿@model LoginDto
+@{
+    Layout = null;
+}
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+
+@await Component.InvokeAsync("_UILayoutHeaderComponentPartial")
+
+<body class="sub_page">
+    @await Component.InvokeAsync("_UILayoutNavbarComponentPartial")
+    </div>
+    <section class="food_section layout_padding">
+        <div class="container">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Giriş</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="username">Kullanıcı Adı</label>
+                                <input type="text" class="form-control" asp-for="Username" id="username" placeholder="Kullanıcı Adı Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Şifre</label>
+                                <input type="password" class="form-control" asp-for="Password" id="password" placeholder="Şifre Giriniz">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary">Giriş Yap</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+    @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
+</body>
+
+
+</html>

@@ -1,0 +1,99 @@
+﻿@model CreateUserDto
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+
+@await Component.InvokeAsync("_UILayoutHeaderComponentPartial")
+
+<body class="sub_page">
+    @await Component.InvokeAsync("_UILayoutNavbarComponentPartial")
+    </div>
+    <section class="food_section layout_padding">
+        <div class="container">
+            <div class="col-md-12">
+                <form method="post" onsubmit="register(event)">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni Üye</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="name">Ad</label>
+                                <input type="text" class="form-control" asp-for="Name" id="name" placeholder="Ad Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="surname">Soyad</label>
+                                <input type="text" class="form-control" asp-for="Surname" id="surname" placeholder="Soyad Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Kullanıcı Adı</label>
+                                <input type="text" class="form-control" asp-for="Username" id="username" placeholder="Kullanıcı Adı Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" asp-for="Email" id="email" placeholder="Email Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Şifre</label>
+                                <input type="password" class="form-control" asp-for="Password" id="password" placeholder="Şifre Giriniz">
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-primary">Ekle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+    @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
+
+
+    <script>
+        function validateEmail(email) {
+            const emailPattern = /^[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$/;
+            return emailPattern.test(email);
+        }
+
+        function validatePassword(password) {
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@@$!%*+\-?&])[A-Za-z\d@@$!%*+\-?&]{8,}$/;
+            return passwordPattern.test(password);
+        }
+
+        function register(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!validateEmail(email)) {
+                swal("Email", "Geçerli bir email adresi giriniz!", "error");
+                return;
+            }
+
+            if (!validatePassword(password)) {
+                swal("Şifre", "Şifre en az 8 karakterli olmalı, 1 büyük harf, 1 küçük harf, 1 sayı ve 1 özel karakter içermelidir", "error");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/User/Register",
+                data: JSON.stringify(createUserDto),
+                contentType: "application/json;",
+                success: function () {
+                    swal("", "Üyelik işleminiz başarıyla tamamlanmıştır!", "success");
+                },
+            });
+        }
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+
+</html>

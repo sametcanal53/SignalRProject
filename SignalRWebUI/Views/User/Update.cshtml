@@ -1,0 +1,46 @@
+﻿@model UpdateUserDto
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Günün İndirimleri İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="card-title">Öne Çıkan Alan Güncelle</div>
+                            <input type="checkbox" data-toggle="toggle" data-onstyle="info" data-style="btn-round" id="state" asp-for="State">
+                        </div>
+                        <div class="card-body">
+                            <input type="hidden" asp-for="Id" />
+                            <div class="form-group">
+                                <label for="surname">Soyadınız</label>
+                                <input type="text" class="form-control" asp-for="Surname" id="surname" placeholder="Soyad Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Kullanıcı Adı</label>
+                                <input type="text" class="form-control" asp-for="Username" id="username" placeholder="Kullanıcı Adı Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" asp-for="Email" id="email" placeholder="Email Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Şifre</label>
+                                <input type="password" class="form-control" asp-for="Password" id="password" placeholder="Şifre Giriniz">
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-primary">Güncelle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

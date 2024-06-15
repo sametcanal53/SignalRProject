@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Identity;
 using SignalR.BusinessLayer.Abstracts;
 using SignalR.BusinessLayer.Concretes;
 using SignalR.DataAccessLayer.Abstracts;
 using SignalR.DataAccessLayer.Concretes;
 using SignalR.DataAccessLayer.EntityFramework;
 using SignalR.DataAccessLayer.Repositories;
+using SignalR.EntityLayer.Entities;
 using SignalRApi.Hubs;
 using System.Text.Json.Serialization;
 
@@ -26,6 +28,9 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddSignalR();
+builder.Services.AddIdentity<User, Role>()
+    .AddEntityFrameworkStores<SignalRContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
@@ -80,6 +85,8 @@ builder.Services.AddScoped<IBasketDal, EfBasketDal>();
 builder.Services.AddScoped<INotificationService, NotificationManager>();
 builder.Services.AddScoped<INotificationDal, EfNotificationDal>();
 
+builder.Services.AddScoped<IUserService, UserManager>();
+builder.Services.AddScoped<IUserDal, EfUserDal>();
 #endregion
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
