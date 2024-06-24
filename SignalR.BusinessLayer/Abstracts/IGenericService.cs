@@ -1,6 +1,6 @@
 ﻿namespace SignalR.BusinessLayer.Abstracts
 {
-    public interface IGenericService<T> where T : class
+    public interface IGenericService<T>
     {
         T Add(T entity);
         T Update(T entity);

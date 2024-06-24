@@ -1,9 +1,8 @@
 ﻿using SignalR.Core.Abstracts;
-using System.Text.Json.Serialization;
 
 namespace SignalR.Core.Concretes
 {
-    public class Dto : IDto
+    public class Dto : IDto, IHasState
     {
         public bool State { get; set; } = true;
     }

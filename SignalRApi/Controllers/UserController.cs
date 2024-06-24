@@ -10,6 +10,7 @@ namespace SignalRApi.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+
         public UserController(
             UserManager<User> userManager,
             SignInManager<User> signInManager)
@@ -19,15 +20,28 @@ namespace SignalRApi.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register(CreateUserDto createUserDto) => Ok(await _userManager.CreateAsync(new User
+        public async Task<IActionResult> Register(CreateUserDto createUserDto)
         {
-            Name = createUserDto.Name,
-            Surname = createUserDto.Surname,
-            UserName = createUserDto.Username,
-            Email = createUserDto.Email
-        }, createUserDto.Password));
+
+            var x = new User
+            {
+                Name = createUserDto.Name,
+                Surname = createUserDto.Surname,
+                UserName = createUserDto.Username,
+                Email = createUserDto.Email
+            };
+
+            var xa = await _userManager.CreateAsync(x, createUserDto.Password);
+            var y = await _userManager.AddToRoleAsync(x, "User");
+            return Ok(x);
+        }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginDto loginDto) => Ok(await _signInManager.PasswordSignInAsync(loginDto.Username, loginDto.Password, loginDto.IsPersistent, true));
+        public async Task<IActionResult> Login(LoginDto loginDto)
+        {
+            var x = await _signInManager.PasswordSignInAsync(loginDto.Username, loginDto.Password, loginDto.IsPersistent, true);
+            return Ok(x);
+        }
+
     }
 }

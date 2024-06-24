@@ -23,7 +23,7 @@ builder.Services.AddDbContext<SignalRContext>();
 builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<SignalRContext>();
 builder.Services.AddControllersWithViews(opt =>
 {
-    opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
+    //opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
 });
 
 builder.Services.ConfigureApplicationCookie(opt =>

@@ -1,6 +1,6 @@
 ﻿namespace SignalR.DataAccessLayer.Abstracts
 {
-    public interface IGenericDal<T> where T : class
+    public interface IGenericDal<T>
     {
         T Add(T entity);
         T Update(T entity);

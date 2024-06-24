@@ -85,9 +85,6 @@ builder.Services.AddScoped<IBasketDal, EfBasketDal>();
 builder.Services.AddScoped<INotificationService, NotificationManager>();
 builder.Services.AddScoped<INotificationDal, EfNotificationDal>();
 
-builder.Services.AddScoped<IUserService, UserManager>();
-builder.Services.AddScoped<IUserDal, EfUserDal>();
-
 builder.Services.AddScoped<IMessageService, MessageManager>();
 builder.Services.AddScoped<IMessageDal, EfMessageDal>();
 

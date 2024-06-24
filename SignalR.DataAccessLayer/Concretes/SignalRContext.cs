@@ -10,7 +10,7 @@ namespace SignalR.DataAccessLayer.Concretes
         {
             optionsBuilder
                 .UseLazyLoadingProxies()
-                .UseSqlServer("Server=DESKTOP-HD1IHUN;Database=SignalRDb;Trusted_Connection=True;TrustServerCertificate=True");
+                .UseSqlServer("Server=.;Database=SignalRDb;Trusted_Connection=True;TrustServerCertificate=True");
         }
 
         public DbSet<About> Abouts { get; set; }

@@ -2,7 +2,6 @@
 {
     public interface IDto
     {
-        public bool State { get; set; }
     }
 
     public interface IDto<TId> : IDto

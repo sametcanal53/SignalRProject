@@ -1,7 +1,8 @@
-﻿namespace SignalR.Core.Extensions
+﻿
+namespace SignalR.Core.Extensions
 {
     public static class EnumerableExtensions
     {
-        public static IEnumerable<T> IsActiveConditions<T>(IEnumerable<T> queryable, bool? isActive = default) => queryable.Where(q => !isActive.HasValue || q.GetType().GetProperty("State") == null ? true : q.GetType().GetProperty("State").GetValue(q).Equals(isActive.Value));
+        public static IEnumerable<T> WhereIf<T>(this IEnumerable<T> self, Func<T, bool> predicate, bool condition) => condition ? self.Where(predicate) : self;
     }
 }
