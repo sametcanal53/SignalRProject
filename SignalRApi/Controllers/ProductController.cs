@@ -18,8 +18,8 @@ namespace SignalRApi.Controllers
             _productService = productService;
         }
 
-        [HttpGet("ProductCountByCategoryName")]
-        public IActionResult ProductCountByCategoryName(ProductCountByCategoryNameRequest request) => Ok(_productService.ProductCountByCategoryName(request.CategoryName));
+        [HttpGet("ProductCount")]
+        public IActionResult ProductCount(ProductCount request) => Ok(_productService.ProductCount(request.CategoryId));
 
         [HttpGet("ProductPriceAvg")]
         public IActionResult ProductPriceAvg(ProductPriceAvgRequest request) => Ok(_productService.ProductPriceAvg(request.CategoryId));

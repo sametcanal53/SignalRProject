@@ -4,7 +4,7 @@ namespace SignalR.DataAccessLayer.Abstracts
 {
     public interface IProductDal : IGenericDal<Product>
     {
-        int ProductCountByCategoryName(string categoryName);
+        int ProductCount(int? categoryId);
         decimal ProductPriceAvg(int? categoryId);
         string ProductNameByMaxPrice(int? categoryId);
         string ProductNameByMinPrice(int? categoryId);

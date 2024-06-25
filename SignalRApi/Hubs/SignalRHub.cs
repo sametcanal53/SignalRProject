@@ -42,8 +42,8 @@ namespace SignalRApi.Hubs
             await Clients.All.SendAsync("ReceiveActiveCategoryCount", _categoryService.GetCount(true));
             await Clients.All.SendAsync("ReceivePassiveCategoryCount", _categoryService.GetCount(false));
             await Clients.All.SendAsync("ReceiveProductCount", _productService.GetCount());
-            await Clients.All.SendAsync("ReceiveProductCountByCategoryNameHamburger", _productService.ProductCountByCategoryName("Hamburger"));
-            await Clients.All.SendAsync("ReceiveProductCountByCategoryNameDrink", _productService.ProductCountByCategoryName("Drink"));
+            await Clients.All.SendAsync("ReceiveProductCountByCategoryNameHamburger", _productService.ProductCount(1));
+            await Clients.All.SendAsync("ReceiveProductCountByCategoryNameDrink", _productService.ProductCount(4));
             await Clients.All.SendAsync("ReceiveProductPriceAvg", _productService.ProductPriceAvg().ToString("0.00") + "₺");
             await Clients.All.SendAsync("ReceiveProductNameByMaxPrice", _productService.ProductNameByMaxPrice());
             await Clients.All.SendAsync("ReceiveProductNameByMinPrice", _productService.ProductNameByMinPrice());
@@ -61,6 +61,17 @@ namespace SignalRApi.Hubs
             await Clients.All.SendAsync("ReceiveTotalMoneyCaseAmount", _moneyCaseService.TotalMoneyCaseAmount().ToString("0.00") + "₺");
             await Clients.All.SendAsync("ReceiveActiveTotalOrderCount", _orderService.GetCount(true));
             await Clients.All.SendAsync("ReceiveMenuTableCount", _menuTableService.GetCount());
+            await Clients.All.SendAsync("ReceiveProductPriceAvg", _productService.ProductPriceAvg());
+            await Clients.All.SendAsync("ReceiveProductPriceAvgByHamburger", _productService.ProductPriceAvg(1));
+            await Clients.All.SendAsync("ReceiveProductCountByCategoryNameDrink", _productService.ProductCount(4));
+            await Clients.All.SendAsync("ReceiveTotalOrderCount", _orderService.GetCount());
+            await Clients.All.SendAsync("ReceiveTotalProductCount", _productService.ProductCount());
+            await Clients.All.SendAsync("ReceiveStaticValue", 53);
+            await Clients.All.SendAsync("ReceiveCategoryCount", _categoryService.GetCount());
+            await Clients.All.SendAsync("ReceiveProductCount", _productService.GetCount());
+            await Clients.All.SendAsync("ReceiveBookingCount", _bookingService.GetCount());
+            await Clients.All.SendAsync("ReceiveLastOrderPrice", _orderService.LastOrderPrice().ToString("0.00") + "₺");
+            await Clients.All.SendAsync("ReceiveTotalProductPrice", _productService.GetList(default).Sum(p => p.Price).ToString("0.00") + "₺");
         }
 
         public async Task GetBookings()
