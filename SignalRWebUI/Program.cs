@@ -8,27 +8,29 @@ var builder = WebApplication.CreateBuilder(args);
 
 var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 
-builder.Services.AddHttpClient("client", client =>
+builder.Services.AddAuthentication(options =>
 {
-    client.BaseAddress = new Uri("https://localhost:5353/");
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 })
-.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
 {
-    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) =>
-    {
-        return policyErrors == System.Net.Security.SslPolicyErrors.None;
-    }
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
 });
+
 builder.Services.AddDbContext<SignalRContext>();
 builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<SignalRContext>();
+builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews(opt =>
 {
-    //opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
+    opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
 });
 
 builder.Services.ConfigureApplicationCookie(opt =>
 {
-    opt.LoginPath = "/User/Login";
+    opt.LoginPath = "/Account/Login";
 });
 
 var app = builder.Build();

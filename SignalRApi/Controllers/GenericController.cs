@@ -25,7 +25,7 @@ namespace SignalRApi.Controllers
         }
 
         [HttpGet]
-        public virtual IActionResult GetList(bool? includedPassive = false) => Ok(_mapper.Map<List<TModel>>(_service.GetList(includedPassive)));
+        public virtual IActionResult GetList(bool? includedPassive = true) => Ok(_mapper.Map<List<TModel>>(_service.GetList(includedPassive)));
 
         [HttpGet("{id}")]
         public virtual IActionResult Get(int id) => Ok(_mapper.Map<TModel>(_service.GetById(id)));

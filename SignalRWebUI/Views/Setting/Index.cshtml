@@ -1,0 +1,51 @@
+﻿@model UpdateUserDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Profil Ayarları</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Şifre ve Bilgi Güncelleme Sayfası</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="name">Ad</label>
+                                <input type="text" class="form-control" asp-for="Name" id="name" placeholder="Adınızı Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="surname">Soyad</label>
+                                <input type="text" class="form-control" asp-for="Surname" id="surname" placeholder="Soyadınızı Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-Mail</label>
+                                <input type="text" class="form-control" asp-for="Email" id="email" placeholder="Emailinizi Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Kullanıcı Adı</label>
+                                <input type="text" class="form-control" asp-for="Username" id="username" placeholder="Kullanıcı Adınızı Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Şifre</label>
+                                <input type="password" class="form-control" asp-for="Password" id="password" placeholder="Şifrenizi Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Şifre Tekrar</label>
+                                <input type="password" class="form-control" asp-for="ConfirmPassword" id="confirmPassword" placeholder="Şifrenizi Tekrar Giriniz">
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-primary">Ekle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

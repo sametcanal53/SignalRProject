@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SignalR.DataAccessLayer.Abstracts;
+﻿using SignalR.DataAccessLayer.Abstracts;
 using SignalR.DataAccessLayer.Concretes;
 using SignalR.DataAccessLayer.Repositories;
 using SignalR.EntityLayer.Entities;

@@ -2,8 +2,8 @@
 
 namespace SignalRWebUI.Dtos.Users.Update
 {
-    public class UpdateUserDto : UserDto, IDto<int>
+    public class UpdateUserDto : UserDto
     {
-        public int Id { get; set; }
+        public string ConfirmPassword { get; set; }
     }
 }

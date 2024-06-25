@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.DtoLayer.Concretes.Dtos.Users;
 using SignalR.DtoLayer.Concretes.Dtos.Users.Create;
 using SignalR.EntityLayer.Entities;
+using System.Security.Claims;
 
 namespace SignalRApi.Controllers
 {
@@ -39,8 +42,8 @@ namespace SignalRApi.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            var x = await _signInManager.PasswordSignInAsync(loginDto.Username, loginDto.Password, loginDto.IsPersistent, true);
-            return Ok(x);
+            var result = await _signInManager.PasswordSignInAsync(loginDto.Username, loginDto.Password, loginDto.IsPersistent, false);
+            return Ok(result);
         }
 
     }

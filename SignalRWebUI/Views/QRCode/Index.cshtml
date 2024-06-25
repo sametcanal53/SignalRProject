@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">QR Kod İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post" asp-action="Index" asp-controller="QRCode">
+                    <div class="form-group d-flex">
+                        <input type="text" class="form-control mr-2" name="value" placeholder="QR Kodun İçeriğini Giriniz" value="SignalRRestaurant - " />
+                        <input type="submit" class="btn btn-primary" value="QR Kod Oluştur" />
+                    </div>
+                    <br />
+                    @if (ViewBag.QrCodeImage != null)
+                    {
+                        <div class="form-group d-block form-inline">
+                            <img src="@ViewBag.QrCodeImage" alt="" style="width:400px;height:400px" />
+                        </div>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

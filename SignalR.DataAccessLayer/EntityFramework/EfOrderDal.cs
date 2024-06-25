@@ -14,6 +14,6 @@ namespace SignalR.DataAccessLayer.EntityFramework
             _context = context;
         }
 
-        public decimal LastOrderPrice(bool? isActive) => _context.Orders.WhereIf(o => true, isActive.Value == true).OrderByDescending(o => o.Id).Select(o => o.TotalPrice).FirstOrDefault();
+        public decimal LastOrderPrice(bool? isActive) => _context.Orders.WhereIf(o => true, isActive ?? false).OrderByDescending(o => o.Id).Select(o => o.TotalPrice).FirstOrDefault();
     }
 }
